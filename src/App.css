@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
+:root {
+  --color-light-coral: #f08080;
+  --color-dark-coral: #dd7575;
+  --color-dark-gray: #a9a9a9;
+  --color-black: #000000;
+}
+
 * {
   box-sizing: border-box;
   font-family: 'Montserrat', sans-serif;
@@ -12,11 +19,28 @@ ul {
 }
 
 a {
-  color: black;
+  color: var(--color-black);
   text-decoration: none;
 }
 
 input {
   border: none;
   outline: none;
+}
+
+/* Bootstrap */
+.btn-primary {
+  --bs-btn-bg: var(--color-light-coral);
+  --bs-btn-border-color: var(--color-light-coral);
+  --bs-btn-hover-bg: var(--color-dark-coral);
+  --bs-btn-hover-border-color: var(--color-dark-coral);
+  --bs-btn-active-bg: var(--color-dark-coral);
+  --bs-btn-active-border-color: var(--color-dark-coral);
+  --bs-btn-disabled-bg: var(--color-light-coral);
+  --bs-btn-disabled-border-color: var(--color-light-coral);
+}
+
+.form-check-input:checked {
+  background-color: var(--color-light-coral);
+  border-color: var(--color-light-coral);
 }

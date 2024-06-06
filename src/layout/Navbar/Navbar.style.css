@@ -11,7 +11,7 @@
   font-family: 'Rowdies', sans-serif;
   font-size: 50px;
   font-weight: 700;
-  color: #f08080;
+  color: var(--color-light-coral);
   margin-left: 20px;
 }
 
@@ -35,10 +35,15 @@
 .nav-search {
   width: 181px;
   height: 36px;
-  border: 1px solid #000;
+  border: 1px solid var(--color-black);
   border-radius: 18px;
   overflow: hidden;
   padding-left: 10px;
+}
+
+.nav-search::placeholder {
+  color: var(--color-dark-gray);
+  font-size: 0.85rem;
 }
 
 .nav-icon {
