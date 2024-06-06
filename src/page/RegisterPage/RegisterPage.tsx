@@ -4,6 +4,7 @@ import './RegisterPage.style.css';
 import { Register } from '../../model/user';
 import { useDispatch } from 'react-redux';
 import { userActions } from '../../redux/actions/userAction';
+import { useNavigate } from 'react-router-dom';
 
 function RegisterPage() {
   const [passwordError, setPasswordError] = useState<string>('');
@@ -16,6 +17,7 @@ function RegisterPage() {
     policy: false,
   });
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     event.preventDefault();
@@ -42,7 +44,7 @@ function RegisterPage() {
     }
     setPasswordError('');
     setPolicyError(false);
-    dispatch(userActions.registerUser({ email, name, password }));
+    dispatch(userActions.registerUser({ email, name, password }, navigate));
   };
 
   return (
