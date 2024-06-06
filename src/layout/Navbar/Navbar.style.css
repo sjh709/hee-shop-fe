@@ -23,6 +23,10 @@
   margin: 0 0.781vw;
 }
 
+.nav-menu-item a:hover {
+  color: var(--color-light-coral);
+}
+
 .nav-header {
   display: flex;
   margin-right: 20px;
