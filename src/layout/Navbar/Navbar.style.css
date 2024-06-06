@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Rowdies:wght@300;400;700&display=swap');
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+}
+
+.nav-logo {
+  font-family: 'Rowdies', sans-serif;
+  font-size: 50px;
+  font-weight: 700;
+  color: #f08080;
+  margin-left: 20px;
+}
+
+.nav-menu {
+  display: flex;
+}
+
+.nav-menu-item {
+  margin: 0 0.781vw;
+}
+
+.nav-header {
+  display: flex;
+  margin-right: 20px;
+}
+
+.nav-header > * {
+  margin: 0 0.781vw;
+}
+
+.nav-search {
+  width: 181px;
+  height: 36px;
+  border: 1px solid #000;
+  border-radius: 18px;
+  overflow: hidden;
+  padding-left: 10px;
+}
+
+.nav-icon {
+  display: flex;
+  align-items: center;
+}
+
+.nav-icon a {
+  margin-left: 10px;
+}
