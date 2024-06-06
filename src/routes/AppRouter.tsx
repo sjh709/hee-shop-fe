@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router';
 import ProductAll from '../page/ProductAll';
-import LoginPage from '../page/LoginPage';
+import LoginPage from '../page/LoginPage/LoginPage';
 import RegisterPage from '../page/RegisterPage/RegisterPage';
 import ProductDetail from '../page/ProductDetail';
 

@@ -4,8 +4,8 @@ import './RegisterPage.style.css';
 
 function RegisterPage() {
   return (
-    <Container className='login-area'>
-      <h3 className='login-title'>회원가입</h3>
+    <Container className='register-area'>
+      <h3 className='register-title'>회원가입</h3>
       <Form>
         <Form.Group className='mb-3' controlId='formBasicEmail'>
           <Form.Label>이메일</Form.Label>
