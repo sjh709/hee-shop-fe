@@ -66,6 +66,47 @@
   display: none;
 }
 
+.side-icon-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5rem;
+  margin-left: 2rem;
+  position: fixed;
+  bottom: 0;
+}
+
+.side-menu-icon > * {
+  margin-right: 10px;
+  margin-top: 15px;
+}
+
+.side-search-bar {
+  margin: 1rem;
+  margin-left: 2rem;
+  padding-right: 1.3rem;
+  border-bottom: 1px solid var(--color-black);
+  padding-bottom: 5px;
+  position: absolute;
+}
+
+.side-search-icon {
+  position: absolute;
+  top: 20px;
+  left: 213px;
+  font-size: 1.2rem;
+}
+
+.side-menu-list {
+  margin-top: 6rem;
+  font-size: 1.6rem;
+  margin-left: 2rem;
+  font-weight: bold;
+}
+
+.side-menu-list > li {
+  margin-bottom: 10px;
+}
+
 /* 태블릿 */
 @media (min-width: 768px) and (max-width: 1199px) {
   .burger-menu {

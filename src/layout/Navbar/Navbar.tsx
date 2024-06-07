@@ -6,6 +6,7 @@ import {
   faBox,
   faUser,
   faXmark,
+  faMagnifyingGlass,
 } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import './Navbar.style.css';
@@ -54,6 +55,38 @@ function Navbar() {
         <button className='close-btn' onClick={() => setSideOpen(!sideOpen)}>
           <FontAwesomeIcon icon={faXmark} />
         </button>
+        <div>
+          <input
+            type='text'
+            placeholder='검색어를 입력하세요'
+            className='side-search-bar'
+          />
+          <FontAwesomeIcon
+            icon={faMagnifyingGlass}
+            className='side-search-icon'
+          />
+        </div>
+        <ul className='side-menu-list'>
+          {menuList.map((menu, index) => (
+            <li key={index}>
+              <a href='#'>{menu}</a>
+            </li>
+          ))}
+        </ul>
+        <div className='side-icon-group'>
+          <div className='side-menu-icon'>
+            <FontAwesomeIcon icon={faUser} />
+            <Link to='/login'>로그인</Link>
+          </div>
+          <div className='side-menu-icon'>
+            <FontAwesomeIcon icon={faBox} />
+            <Link to='/'>내 주문</Link>
+          </div>
+          <div className='side-menu-icon'>
+            <FontAwesomeIcon icon={faBagShopping} />
+            <Link to='/'>쇼핑백</Link>
+          </div>
+        </div>
       </div>
       <div className={`side-menu-bg ${sideOpen ? 'open' : ''}`} />
     </div>
