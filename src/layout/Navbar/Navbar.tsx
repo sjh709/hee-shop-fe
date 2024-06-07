@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBagShopping,
+  faBars,
   faBox,
   faUser,
+  faXmark,
 } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import './Navbar.style.css';
 
 function Navbar() {
   const menuList = ['선글라스', '안경'];
+  const [sideOpen, setSideOpen] = useState(false);
+
   return (
     <div className='nav-bar'>
       <Link to='/' className='nav-logo'>
@@ -25,6 +29,9 @@ function Navbar() {
         </ul>
       </div>
       <div className='nav-header'>
+        <div className='burger-menu' onClick={() => setSideOpen(!sideOpen)}>
+          <FontAwesomeIcon icon={faBars} />
+        </div>
         <input
           type='text'
           placeholder='검색어를 입력하세요'
@@ -43,6 +50,12 @@ function Navbar() {
           <Link to='/'>쇼핑백</Link>
         </div>
       </div>
+      <div className={`side-menu ${sideOpen ? 'open' : ''}`}>
+        <button className='close-btn' onClick={() => setSideOpen(!sideOpen)}>
+          <FontAwesomeIcon icon={faXmark} />
+        </button>
+      </div>
+      <div className={`side-menu-bg ${sideOpen ? 'open' : ''}`} />
     </div>
   );
 }

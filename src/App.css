@@ -5,6 +5,7 @@
   --color-dark-coral: #dd7575;
   --color-dark-gray: #a9a9a9;
   --color-black: #000000;
+  --color-white: #ffffff;
 }
 
 * {
@@ -26,6 +27,11 @@ a {
 input {
   border: none;
   outline: none;
+}
+
+button {
+  background-color: transparent;
+  border: none;
 }
 
 /* Bootstrap */
