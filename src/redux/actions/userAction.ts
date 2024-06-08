@@ -56,7 +56,34 @@ function loginWithEmail({
   };
 }
 
+function loginWithToken(): any {
+  return async (dispatch: Dispatch) => {
+    try {
+      dispatch({ type: types.LOGIN_WITH_TOKEN_REQUEST });
+      const response = await api.get('/user/me');
+      if (response.status !== 200) throw new Error(response.data.error);
+      dispatch({
+        type: types.LOGIN_WITH_TOKEN_SUCCESS,
+        payload: response.data,
+      });
+    } catch (e) {
+      const err = e as ErrorType;
+      dispatch({ type: types.LOGIN_WITH_TOKEN_FAIL, payload: err.error });
+      dispatch(logout());
+    }
+  };
+}
+
+function logout(): any {
+  return async (dispatch: Dispatch) => {
+    dispatch({ type: types.LOGOUT });
+    sessionStorage.removeItem('token');
+  };
+}
+
 export const userActions = {
   registerUser,
   loginWithEmail,
+  loginWithToken,
+  logout,
 };

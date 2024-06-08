@@ -10,10 +10,18 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import './Navbar.style.css';
+import { UserType } from '../../model/user';
+import { useDispatch } from 'react-redux';
+import { userActions } from '../../redux/actions/userAction';
 
-function Navbar() {
+function Navbar({ user }: { user: UserType | null }) {
   const menuList = ['선글라스', '안경'];
   const [sideOpen, setSideOpen] = useState(false);
+  const dispatch = useDispatch();
+
+  const logout = () => {
+    dispatch(userActions.logout());
+  };
 
   return (
     <div className='nav-bar'>
@@ -40,7 +48,11 @@ function Navbar() {
         />
         <div className='nav-icon'>
           <FontAwesomeIcon icon={faUser} />
-          <Link to='/login'>로그인</Link>
+          {user ? (
+            <button onClick={logout}>로그아웃</button>
+          ) : (
+            <Link to='/login'>로그인</Link>
+          )}
         </div>
         <div className='nav-icon'>
           <FontAwesomeIcon icon={faBox} />
