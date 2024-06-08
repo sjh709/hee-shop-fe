@@ -5,6 +5,7 @@ import './LoginPage.style.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../../redux/actions/userAction';
 import { RootState } from '../../redux/store';
+import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 
 function LoginPage() {
   const [email, setEmail] = useState<string>('');
@@ -13,6 +14,7 @@ function LoginPage() {
   const navigate = useNavigate();
   const user = useSelector((state: RootState) => state.user.user);
   const error = useSelector((state: RootState) => state.user.error);
+  const loading = useSelector((state: RootState) => state.user.loading);
 
   const loginWithEmail = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
@@ -24,6 +26,10 @@ function LoginPage() {
       navigate('/');
     }
   }, [user]);
+
+  if (loading) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <Container className='login-area'>

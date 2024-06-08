@@ -50,3 +50,7 @@ button {
   background-color: var(--color-light-coral);
   border-color: var(--color-light-coral);
 }
+
+.text-primary {
+  color: var(--color-light-coral) !important;
+}
