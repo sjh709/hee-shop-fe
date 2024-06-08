@@ -1,4 +1,4 @@
-import { User } from '../../model/user';
+import { RegisterUserType } from '../../model/user';
 import * as types from '../../constants/user.constants';
 import api from '../../utils/api';
 import { Dispatch } from 'redux';
@@ -11,7 +11,7 @@ interface ErrorType {
 }
 
 function registerUser(
-  { email, name, password }: User,
+  { email, name, password }: RegisterUserType,
   navigate: NavigateFunction
 ): any {
   return async (dispatch: Dispatch) => {
@@ -35,6 +35,28 @@ function registerUser(
   };
 }
 
+function loginWithEmail({
+  email,
+  password,
+}: {
+  email: string;
+  password: string;
+}): any {
+  return async (dispatch: Dispatch) => {
+    try {
+      dispatch({ type: types.LOGIN_REQUEST });
+      const response = await api.post('/auth/login', { email, password });
+      if (response.status !== 200) throw new Error(response.data.error);
+      sessionStorage.setItem('token', response.data.token);
+      dispatch({ type: types.LOGIN_SUCCESS, payload: response.data });
+    } catch (e) {
+      const err = e as ErrorType;
+      dispatch({ type: types.LOGIN_FAIL, payload: err.error });
+    }
+  };
+}
+
 export const userActions = {
   registerUser,
+  loginWithEmail,
 };

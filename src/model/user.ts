@@ -1,4 +1,4 @@
-export type Register = {
+export type RegisterFormType = {
   email: string;
   name: string;
   password: string;
@@ -6,8 +6,12 @@ export type Register = {
   policy: boolean;
 };
 
-export type User = {
+export type RegisterUserType = {
   email: string;
   name: string;
   password: string;
+};
+
+export type UserType = RegisterUserType & {
+  level: string;
 };

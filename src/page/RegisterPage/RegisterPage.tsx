@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Form, Container } from 'react-bootstrap';
 import './RegisterPage.style.css';
-import { Register } from '../../model/user';
+import { RegisterFormType } from '../../model/user';
 import { useDispatch } from 'react-redux';
 import { userActions } from '../../redux/actions/userAction';
 import { useNavigate } from 'react-router-dom';
@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 function RegisterPage() {
   const [passwordError, setPasswordError] = useState<string>('');
   const [policyError, setPolicyError] = useState<boolean>(false);
-  const [formData, setFormData] = useState<Register>({
+  const [formData, setFormData] = useState<RegisterFormType>({
     email: '',
     name: '',
     password: '',
