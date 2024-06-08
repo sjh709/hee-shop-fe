@@ -88,7 +88,11 @@ function Navbar({ user }: { user: UserType | null }) {
         <div className='side-icon-group'>
           <div className='side-menu-icon'>
             <FontAwesomeIcon icon={faUser} />
-            <Link to='/login'>로그인</Link>
+            {user ? (
+              <button onClick={logout}>로그아웃</button>
+            ) : (
+              <Link to='/login'>로그인</Link>
+            )}
           </div>
           <div className='side-menu-icon'>
             <FontAwesomeIcon icon={faBox} />
