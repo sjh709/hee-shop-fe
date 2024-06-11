@@ -40,7 +40,7 @@ function Navbar({ user }: { user: UserType | null }) {
       <div>
         {user && user.level === 'admin' && (
           <div className='admin-link'>
-            <Link to='/'>admin page</Link>
+            <Link to='/admin/product'>admin page</Link>
           </div>
         )}
         <div className='nav-header'>
@@ -73,7 +73,7 @@ function Navbar({ user }: { user: UserType | null }) {
       <div className={`side-menu ${sideOpen ? 'open' : ''}`}>
         {user && user.level === 'admin' && (
           <div className='side-admin-page'>
-            <Link to='/'>admin page</Link>
+            <Link to='/admin/product'>admin page</Link>
           </div>
         )}
         <button className='close-btn' onClick={() => setSideOpen(!sideOpen)}>
