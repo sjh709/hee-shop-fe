@@ -84,35 +84,22 @@
   margin-top: 15px;
 }
 
-.side-search-bar {
-  margin: 1rem;
-  margin-left: 2rem;
-  padding-right: 1.3rem;
-  border-bottom: 1px solid var(--color-black);
-  padding-bottom: 5px;
-  position: absolute;
-}
-
-.side-search-icon {
-  position: absolute;
-  top: 20px;
-  left: 213px;
-  font-size: 1.2rem;
-}
-
-.side-menu-list {
-  margin-top: 6rem;
-  font-size: 1.6rem;
-  margin-left: 2rem;
-  font-weight: bold;
-}
-
 .side-menu-list > li {
   margin-bottom: 10px;
 }
 
+.admin-link {
+  text-align: right;
+  margin-right: calc(0.781vw + 20px);
+}
+
+.admin-link a {
+  color: var(--color-dark-coral);
+  text-decoration: underline;
+}
+
 /* 태블릿 */
-@media (min-width: 768px) and (max-width: 1199px) {
+@media (min-width: 744px) and (max-width: 1023px) {
   .burger-menu {
     display: flex;
     align-items: center;
@@ -124,7 +111,7 @@
     position: fixed;
     top: 0;
     right: 0;
-    max-width: 300px;
+    max-width: 350px;
     width: 100%;
     height: 100%;
     background: var(--color-white);
@@ -156,23 +143,67 @@
     visibility: visible;
   }
 
-  .side-menu.open .close-btn {
+  .close-btn {
     display: block;
-    font-size: 1.5rem;
+    color: var(--color-black);
+    font-size: 2rem;
     position: fixed;
-    top: 10px;
-    right: 10px;
+    top: 20px;
+    right: 20px;
+  }
+
+  .side-search-box {
+    position: absolute;
+    top: 4.3rem;
+  }
+
+  .side-search-bar {
+    margin: 1rem;
+    margin-left: 2rem;
+    padding-right: 2.5rem;
+    border-radius: 0;
+    border-bottom: 1px solid var(--color-black);
+    padding-bottom: 8px;
+    font-size: 1.2rem;
+    position: relative;
+  }
+
+  .side-search-icon {
+    position: absolute;
+    top: 1.6rem;
+    right: 1.5rem;
+    font-size: 1.2rem;
+  }
+
+  .side-menu-list {
+    margin-top: 10rem;
+    font-size: 1.6rem;
+    margin-left: 2rem;
+    font-weight: bold;
+  }
+
+  .side-admin-page {
+    position: absolute;
+    top: 1.6rem;
+    left: 2rem;
+  }
+
+  .side-admin-page a {
+    font-size: 1.1rem;
+    color: var(--color-dark-coral);
+    text-decoration: underline;
   }
 
   .nav-menu,
   .nav-search,
-  .nav-icon {
+  .nav-icon,
+  .admin-link {
     display: none;
   }
 }
 
 /* 모바일 */
-@media (min-width: 360px) and (max-width: 767px) {
+@media (min-width: 320px) and (max-width: 743px) {
   .burger-menu {
     display: flex;
     align-items: center;
@@ -184,7 +215,7 @@
     position: fixed;
     top: 0;
     right: 0;
-    max-width: 300px;
+    max-width: 310px;
     width: 100%;
     height: 100%;
     background: var(--color-white);
@@ -216,17 +247,59 @@
     visibility: visible;
   }
 
-  .side-menu.open .close-btn {
+  .close-btn {
     display: block;
-    font-size: 1.5rem;
+    color: var(--color-black);
+    font-size: 1.8rem;
     position: fixed;
     top: 10px;
-    right: 10px;
+    right: 18px;
+  }
+
+  .side-search-box {
+    position: absolute;
+    top: 3rem;
+  }
+
+  .side-search-bar {
+    margin: 1rem;
+    margin-left: 2rem;
+    padding-right: 2.5rem;
+    border-radius: 0;
+    border-bottom: 1px solid var(--color-black);
+    padding-bottom: 8px;
+    position: relative;
+  }
+
+  .side-search-icon {
+    position: absolute;
+    top: 1.4rem;
+    right: 1.5rem;
+    font-size: 1.2rem;
+  }
+
+  .side-menu-list {
+    margin-top: 8.5rem;
+    font-size: 1.6rem;
+    margin-left: 2rem;
+    font-weight: bold;
+  }
+
+  .side-admin-page {
+    position: absolute;
+    top: 1.6rem;
+    left: 2rem;
+  }
+
+  .side-admin-page a {
+    color: var(--color-dark-coral);
+    text-decoration: underline;
   }
 
   .nav-menu,
   .nav-search,
-  .nav-icon {
+  .nav-icon,
+  .admin-link {
     display: none;
   }
 }

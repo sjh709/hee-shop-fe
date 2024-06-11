@@ -37,37 +37,45 @@ function Navbar({ user }: { user: UserType | null }) {
           ))}
         </ul>
       </div>
-      <div className='nav-header'>
-        <div className='burger-menu' onClick={() => setSideOpen(!sideOpen)}>
-          <FontAwesomeIcon icon={faBars} />
+      <div>
+        <div className='admin-link'>
+          <Link to='/'>admin page</Link>
         </div>
-        <input
-          type='text'
-          placeholder='검색어를 입력하세요'
-          className='nav-search'
-        />
-        <div className='nav-icon'>
-          <FontAwesomeIcon icon={faUser} />
-          {user ? (
-            <button onClick={logout}>로그아웃</button>
-          ) : (
-            <Link to='/login'>로그인</Link>
-          )}
-        </div>
-        <div className='nav-icon'>
-          <FontAwesomeIcon icon={faBox} />
-          <Link to='/'>내 주문</Link>
-        </div>
-        <div className='nav-icon'>
-          <FontAwesomeIcon icon={faBagShopping} />
-          <Link to='/'>쇼핑백</Link>
+        <div className='nav-header'>
+          <div className='burger-menu' onClick={() => setSideOpen(!sideOpen)}>
+            <FontAwesomeIcon icon={faBars} />
+          </div>
+          <input
+            type='text'
+            placeholder='검색어를 입력하세요'
+            className='nav-search'
+          />
+          <div className='nav-icon'>
+            <FontAwesomeIcon icon={faUser} />
+            {user ? (
+              <button onClick={logout}>로그아웃</button>
+            ) : (
+              <Link to='/login'>로그인</Link>
+            )}
+          </div>
+          <div className='nav-icon'>
+            <FontAwesomeIcon icon={faBox} />
+            <Link to='/'>내 주문</Link>
+          </div>
+          <div className='nav-icon'>
+            <FontAwesomeIcon icon={faBagShopping} />
+            <Link to='/'>쇼핑백</Link>
+          </div>
         </div>
       </div>
       <div className={`side-menu ${sideOpen ? 'open' : ''}`}>
+        <div className='side-admin-page'>
+          <Link to='/'>admin page</Link>
+        </div>
         <button className='close-btn' onClick={() => setSideOpen(!sideOpen)}>
           <FontAwesomeIcon icon={faXmark} />
         </button>
-        <div>
+        <div className='side-search-box'>
           <input
             type='text'
             placeholder='검색어를 입력하세요'
@@ -104,7 +112,10 @@ function Navbar({ user }: { user: UserType | null }) {
           </div>
         </div>
       </div>
-      <div className={`side-menu-bg ${sideOpen ? 'open' : ''}`} />
+      <div
+        className={`side-menu-bg ${sideOpen ? 'open' : ''}`}
+        onClick={() => setSideOpen(!sideOpen)}
+      />
     </div>
   );
 }
