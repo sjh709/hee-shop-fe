@@ -38,9 +38,11 @@ function Navbar({ user }: { user: UserType | null }) {
         </ul>
       </div>
       <div>
-        <div className='admin-link'>
-          <Link to='/'>admin page</Link>
-        </div>
+        {user && user.level === 'admin' && (
+          <div className='admin-link'>
+            <Link to='/'>admin page</Link>
+          </div>
+        )}
         <div className='nav-header'>
           <div className='burger-menu' onClick={() => setSideOpen(!sideOpen)}>
             <FontAwesomeIcon icon={faBars} />
@@ -69,9 +71,11 @@ function Navbar({ user }: { user: UserType | null }) {
         </div>
       </div>
       <div className={`side-menu ${sideOpen ? 'open' : ''}`}>
-        <div className='side-admin-page'>
-          <Link to='/'>admin page</Link>
-        </div>
+        {user && user.level === 'admin' && (
+          <div className='side-admin-page'>
+            <Link to='/'>admin page</Link>
+          </div>
+        )}
         <button className='close-btn' onClick={() => setSideOpen(!sideOpen)}>
           <FontAwesomeIcon icon={faXmark} />
         </button>
