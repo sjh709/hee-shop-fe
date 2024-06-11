@@ -15,7 +15,7 @@ import { useDispatch } from 'react-redux';
 import { userActions } from '../../redux/actions/userAction';
 
 function Navbar({ user }: { user: UserType | null }) {
-  const menuList = ['선글라스', '안경'];
+  const menuList = ['Women', 'Men', 'Baby', 'Kids', 'Sport', 'Home'];
   const [sideOpen, setSideOpen] = useState(false);
   const dispatch = useDispatch();
 
