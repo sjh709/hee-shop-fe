@@ -4,7 +4,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 80px;
+  height: 90px;
+  box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px,
+    rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
 }
 
 .nav-logo {
@@ -29,7 +31,6 @@
 
 .nav-header {
   display: flex;
-  margin-right: 20px;
 }
 
 .nav-header > * {
@@ -102,8 +103,12 @@
 @media (min-width: 744px) and (max-width: 1023px) {
   .burger-menu {
     display: flex;
+    justify-content: center;
     align-items: center;
     font-size: 1.5rem;
+    width: 50px;
+    height: 90px;
+    margin-right: 20px;
   }
 
   .side-menu {
@@ -203,11 +208,16 @@
 }
 
 /* 모바일 */
-@media (min-width: 320px) and (max-width: 743px) {
+/* @media (min-width: 320px) and (max-width: 743px) { */
+@media (max-width: 743px) {
   .burger-menu {
     display: flex;
+    justify-content: center;
     align-items: center;
     font-size: 1.5rem;
+    width: 50px;
+    height: 90px;
+    margin-right: 20px;
   }
 
   .side-menu {
