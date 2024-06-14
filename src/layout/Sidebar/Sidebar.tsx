@@ -26,7 +26,7 @@ function NavbarContent() {
 }
 
 function Sidebar() {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState<boolean>(false);
   const navigate = useNavigate();
 
   const handleSelectMenu = (url: string) => {

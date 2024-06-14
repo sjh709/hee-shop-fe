@@ -16,7 +16,7 @@ import { userActions } from '../../redux/actions/userAction';
 
 function Navbar({ user }: { user: UserType | null }) {
   const menuList = ['Women', 'Men', 'Baby', 'Kids', 'Sport', 'Home'];
-  const [sideOpen, setSideOpen] = useState(false);
+  const [sideOpen, setSideOpen] = useState<boolean>(false);
   const dispatch = useDispatch();
 
   const logout = () => {
