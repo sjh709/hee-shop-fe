@@ -1,7 +1,7 @@
 import React from 'react';
 
 function AdminOrderPage() {
-  return <div></div>;
+  return <div>AdminOrderPage</div>;
 }
 
 export default AdminOrderPage;

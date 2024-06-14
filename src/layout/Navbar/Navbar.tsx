@@ -20,6 +20,7 @@ function Navbar({ user }: { user: UserType | null }) {
   const dispatch = useDispatch();
 
   const logout = () => {
+    setSideOpen(false);
     dispatch(userActions.logout());
   };
 

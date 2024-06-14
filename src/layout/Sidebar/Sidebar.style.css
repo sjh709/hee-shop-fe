@@ -19,6 +19,7 @@
 
 .sidebar-item {
   margin-top: 0.8rem;
+  cursor: pointer;
 }
 
 .mobile-sidebar-nav {
@@ -41,6 +42,15 @@
   align-items: center;
   font-size: 1.5rem;
   margin-right: 20px;
+}
+
+.mobile-sidebar-content {
+  padding: 20px;
+  height: 100vh;
+}
+
+.mobile-sidebar-content .mobile-sidebar-logo {
+  margin-left: 0;
 }
 
 /* 태블릿 */
