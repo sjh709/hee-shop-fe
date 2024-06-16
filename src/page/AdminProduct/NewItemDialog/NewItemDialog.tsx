@@ -64,6 +64,20 @@ function NewItemDialog({ showDialog, setShowDialog }: OwnProps) {
     setFormData({ ...formData, image: url });
   };
 
+  const onHandelCategory = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (formData.category.includes(event.target.value)) {
+      const newCategory = formData.category.filter(
+        (item) => item !== event.target.value
+      );
+      setFormData({ ...formData, category: [...newCategory] });
+    } else {
+      setFormData({
+        ...formData,
+        category: [...formData.category, event.target.value],
+      });
+    }
+  };
+
   return (
     <Modal size='lg' show={showDialog} onHide={handleClose}>
       <Modal.Header closeButton>
@@ -190,10 +204,10 @@ function NewItemDialog({ showDialog, setShowDialog }: OwnProps) {
                 required
               />
             </Form.Group>
-            {/* <Form.Group as={Col} controlId='category'>
+            <Form.Group as={Col} controlId='category'>
               <Form.Label>Category</Form.Label>
               <Form.Control
-                onChange={handleChange}
+                onChange={onHandelCategory}
                 value={formData.category}
                 as='select'
                 multiple
@@ -205,7 +219,7 @@ function NewItemDialog({ showDialog, setShowDialog }: OwnProps) {
                   </option>
                 ))}
               </Form.Control>
-            </Form.Group> */}
+            </Form.Group>
             <Form.Group as={Col} controlId='status'>
               <Form.Label>Status</Form.Label>
               <Form.Select
