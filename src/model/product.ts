@@ -6,9 +6,17 @@ export type ProductType = {
   description: string;
   category: string[];
   status: string;
-  price: number;
+  price: string;
 };
 
 export type StockType = {
-  size: number;
+  xs?: number;
+  s?: number;
+  m?: number;
+  l?: number;
+  xl?: number;
+};
+
+export type CreateProductType = {
+  formData: ProductType;
 };

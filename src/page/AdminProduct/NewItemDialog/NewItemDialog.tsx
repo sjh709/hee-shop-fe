@@ -4,6 +4,8 @@ import { ProductType } from '../../../model/product';
 import { CATEGORY, STATUS, SIZE } from '../../../constants/product.constants';
 import CloudinaryUploadWidget from '../../../utils/CloudinaryUploadWidget';
 import './NewItemDialog.style.css';
+import { useDispatch } from 'react-redux';
+import { productActions } from '../../../redux/actions/productAction';
 
 const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME;
 const UPLOADPRESET = process.env.REACT_APP_CLOUDINARY_PRESET;
@@ -21,18 +23,20 @@ const InitialFormData = {
   description: '',
   category: [],
   status: 'active',
-  price: 0,
+  price: '0',
 };
 
 function NewItemDialog({ showDialog, setShowDialog }: OwnProps) {
   const handleClose = () => setShowDialog(false);
   const [formData, setFormData] = useState<ProductType>(InitialFormData);
   const [stock, setStock] = useState<(string[] | [])[]>([]);
+  const [stockError, setStockError] = useState<boolean>(false);
   const [publicId, setPublicId] = useState<string>('');
   const [uwConfig] = useState({
     cloudName: CLOUDNAME,
     uploadPreset: UPLOADPRESET,
   });
+  const dispatch = useDispatch();
 
   const handleChange = (event: any) => {
     const { id, value } = event.target;
@@ -78,13 +82,27 @@ function NewItemDialog({ showDialog, setShowDialog }: OwnProps) {
     }
   };
 
+  const handelSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (stock.length === 0) return setStockError(true);
+    const totalStock = stock.reduce((acc, cur) => {
+      return { ...acc, [cur[0]]: parseInt(cur[1]) };
+    }, {});
+    dispatch(
+      productActions.createProduct({
+        formData: { ...formData, stock: totalStock },
+      })
+    );
+    setShowDialog(false);
+  };
+
   return (
     <Modal size='lg' show={showDialog} onHide={handleClose}>
       <Modal.Header closeButton>
         <Modal.Title>Create New Product</Modal.Title>
       </Modal.Header>
-      <Modal.Body className='p-3'>
-        <Form>
+      <Form onSubmit={handelSubmit}>
+        <Modal.Body className='p-3'>
           <Row className='mb-3'>
             <Form.Group as={Col} controlId='sku'>
               <Form.Label>Sku</Form.Label>
@@ -123,6 +141,9 @@ function NewItemDialog({ showDialog, setShowDialog }: OwnProps) {
 
           <Form.Group controlId='stock' className='mb-3'>
             <Form.Label className='me-2'>Stock</Form.Label>
+            {stockError && (
+              <span className='error-message'>재고를 추가해주세요.</span>
+            )}
             <Button variant='primary' size='sm' onClick={addStock}>
               Add +
             </Button>
@@ -235,13 +256,13 @@ function NewItemDialog({ showDialog, setShowDialog }: OwnProps) {
               </Form.Select>
             </Form.Group>
           </Row>
-        </Form>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button variant='primary' onClick={handleClose}>
-          Submit
-        </Button>
-      </Modal.Footer>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant='primary' type='submit'>
+            Submit
+          </Button>
+        </Modal.Footer>
+      </Form>
     </Modal>
   );
 }
