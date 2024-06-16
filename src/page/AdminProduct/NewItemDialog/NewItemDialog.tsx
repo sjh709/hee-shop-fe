@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form, Row, Col } from 'react-bootstrap';
-import { ProductType, StockType } from '../../../model/product';
+import { ProductType } from '../../../model/product';
 import { CATEGORY, STATUS, SIZE } from '../../../constants/product.constants';
+import CloudinaryUploadWidget from '../../../utils/CloudinaryUploadWidget';
+import './NewItemDialog.style.css';
+
+const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME;
+const UPLOADPRESET = process.env.REACT_APP_CLOUDINARY_PRESET;
 
 interface OwnProps {
   showDialog: boolean;
@@ -23,6 +28,11 @@ function NewItemDialog({ showDialog, setShowDialog }: OwnProps) {
   const handleClose = () => setShowDialog(false);
   const [formData, setFormData] = useState<ProductType>(InitialFormData);
   const [stock, setStock] = useState<(string[] | [])[]>([]);
+  const [publicId, setPublicId] = useState<string>('');
+  const [uwConfig] = useState({
+    cloudName: CLOUDNAME,
+    uploadPreset: UPLOADPRESET,
+  });
 
   const handleChange = (event: any) => {
     const { id, value } = event.target;
@@ -48,6 +58,10 @@ function NewItemDialog({ showDialog, setShowDialog }: OwnProps) {
     const newStock = [...stock];
     newStock[index][1] = value;
     setStock(newStock);
+  };
+
+  const uploadImage = (url: string) => {
+    setFormData({ ...formData, image: url });
   };
 
   return (
@@ -131,7 +145,7 @@ function NewItemDialog({ showDialog, setShowDialog }: OwnProps) {
                       }
                       type='number'
                       placeholder='number of stock'
-                      value={item[1]}
+                      value={item[1] ? item[1] : ''}
                       required
                     />
                   </Col>
@@ -151,9 +165,18 @@ function NewItemDialog({ showDialog, setShowDialog }: OwnProps) {
 
           <Form.Group controlId='image' className='mb-3'>
             <Form.Label className='me-2'>Image</Form.Label>
-            <Button variant='primary' size='sm'>
-              Upload Image +
-            </Button>
+            <CloudinaryUploadWidget
+              uwConfig={uwConfig}
+              setPublicId={setPublicId}
+              uploadImage={uploadImage}
+            />
+            {formData.image && (
+              <img
+                src={formData.image}
+                alt='uploadedimage'
+                className='upload-image ms-2'
+              />
+            )}
           </Form.Group>
 
           <Row className='mb-3'>
@@ -167,7 +190,7 @@ function NewItemDialog({ showDialog, setShowDialog }: OwnProps) {
                 required
               />
             </Form.Group>
-            <Form.Group as={Col} controlId='category'>
+            {/* <Form.Group as={Col} controlId='category'>
               <Form.Label>Category</Form.Label>
               <Form.Control
                 onChange={handleChange}
@@ -182,7 +205,7 @@ function NewItemDialog({ showDialog, setShowDialog }: OwnProps) {
                   </option>
                 ))}
               </Form.Control>
-            </Form.Group>
+            </Form.Group> */}
             <Form.Group as={Col} controlId='status'>
               <Form.Label>Status</Form.Label>
               <Form.Select
