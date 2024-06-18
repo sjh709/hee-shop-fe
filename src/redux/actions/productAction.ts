@@ -1,4 +1,4 @@
-import { CreateProductType } from '../../model/product';
+import { CreateProductType, SearchQueryType } from '../../model/product';
 import { Dispatch } from 'redux';
 import * as types from '../../constants/product.constants';
 import api from '../../utils/api';
@@ -25,11 +25,13 @@ function createProduct({ formData }: CreateProductType): any {
   };
 }
 
-function getProductList(): any {
+function getProductList(query: SearchQueryType): any {
   return async (dispatch: Dispatch) => {
     try {
       dispatch({ type: types.PRODUCT_GET_REQUEST });
-      const response = await api.get('/product');
+      const response = await api.get('/product', {
+        params: { ...query },
+      });
       if (response.status !== 200) throw new Error(response.data.error);
       dispatch({
         type: types.PRODUCT_GET_SUCCESS,

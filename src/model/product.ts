@@ -33,3 +33,8 @@ export type ProductListType = {
   stock: any;
   _id: string;
 };
+
+export type SearchQueryType = {
+  page: string;
+  name?: string;
+};

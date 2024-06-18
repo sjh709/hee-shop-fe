@@ -37,20 +37,6 @@
   margin: 0 0.781vw;
 }
 
-.nav-search {
-  width: 181px;
-  height: 36px;
-  border: 1px solid var(--color-black);
-  border-radius: 18px;
-  overflow: hidden;
-  padding-left: 10px;
-}
-
-.nav-search::placeholder {
-  color: var(--color-dark-gray);
-  font-size: 0.85rem;
-}
-
 .nav-icon {
   display: flex;
   align-items: center;
@@ -97,6 +83,18 @@
 .admin-link a {
   color: var(--color-dark-coral);
   text-decoration: underline;
+}
+
+.nav-search-box .search-box {
+  margin-top: 0;
+}
+
+.nav-search-box .search-box input {
+  width: 86%;
+}
+
+.nav-search-box .search-box input::placeholder {
+  font-size: 0.8rem;
 }
 
 /* 태블릿 */
@@ -157,27 +155,20 @@
     right: 20px;
   }
 
-  .side-search-box {
+  .side-search-box .search-box {
+    margin-top: 0;
     position: absolute;
     top: 4.3rem;
+    left: 2rem;
+    width: 80%;
   }
 
-  .side-search-bar {
-    margin: 1rem;
-    margin-left: 2rem;
-    padding-right: 2.5rem;
-    border-radius: 0;
-    border-bottom: 1px solid var(--color-black);
-    padding-bottom: 8px;
-    font-size: 1.2rem;
-    position: relative;
+  .side-search-box .search-box input {
+    width: 90%;
   }
 
-  .side-search-icon {
-    position: absolute;
-    top: 1.6rem;
-    right: 1.5rem;
-    font-size: 1.2rem;
+  .side-search-box .search-box input::placeholder {
+    font-size: 0.9rem;
   }
 
   .side-menu-list {
@@ -200,7 +191,7 @@
   }
 
   .nav-menu,
-  .nav-search,
+  .nav-search-box .search-box,
   .nav-icon,
   .admin-link {
     display: none;
@@ -266,26 +257,20 @@
     right: 18px;
   }
 
-  .side-search-box {
+  .side-search-box .search-box {
+    margin-top: 0;
     position: absolute;
     top: 3rem;
+    left: 2rem;
+    width: 80%;
   }
 
-  .side-search-bar {
-    margin: 1rem;
-    margin-left: 2rem;
-    padding-right: 2.5rem;
-    border-radius: 0;
-    border-bottom: 1px solid var(--color-black);
-    padding-bottom: 8px;
-    position: relative;
+  .side-search-box .search-box input {
+    width: 90%;
   }
 
-  .side-search-icon {
-    position: absolute;
-    top: 1.4rem;
-    right: 1.5rem;
-    font-size: 1.2rem;
+  .side-search-box .search-box input::placeholder {
+    font-size: 0.9rem;
   }
 
   .side-menu-list {
@@ -307,7 +292,7 @@
   }
 
   .nav-menu,
-  .nav-search,
+  .nav-search-box .search-box,
   .nav-icon,
   .admin-link {
     display: none;

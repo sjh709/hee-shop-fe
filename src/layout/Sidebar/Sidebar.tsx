@@ -14,10 +14,16 @@ function NavbarContent() {
       </Link>
       <div className='sidebar-title'>Admin Account</div>
       <ul>
-        <li className='sidebar-item' onClick={() => navigate('/admin/product')}>
+        <li
+          className='sidebar-item'
+          onClick={() => navigate('/admin/product?page=1')}
+        >
           Product
         </li>
-        <li className='sidebar-item' onClick={() => navigate('/admin/order')}>
+        <li
+          className='sidebar-item'
+          onClick={() => navigate('/admin/order?page=1')}
+        >
           Order
         </li>
       </ul>

@@ -6,13 +6,13 @@ import {
   faBox,
   faUser,
   faXmark,
-  faMagnifyingGlass,
 } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import './Navbar.style.css';
 import { UserType } from '../../model/user';
 import { useDispatch } from 'react-redux';
 import { userActions } from '../../redux/actions/userAction';
+import SearchBox from '../../components/SearchBox/SearchBox';
 
 function Navbar({ user }: { user: UserType | null }) {
   const menuList = ['Women', 'Men', 'Baby', 'Kids', 'Sport', 'Home'];
@@ -41,18 +41,16 @@ function Navbar({ user }: { user: UserType | null }) {
       <div>
         {user && user.level === 'admin' && (
           <div className='admin-link'>
-            <Link to='/admin/product'>admin page</Link>
+            <Link to='/admin/product?page=1'>admin page</Link>
           </div>
         )}
         <div className='nav-header'>
           <div className='burger-menu' onClick={() => setSideOpen(!sideOpen)}>
             <FontAwesomeIcon icon={faBars} />
           </div>
-          <input
-            type='text'
-            placeholder='검색어를 입력하세요'
-            className='nav-search'
-          />
+          <div className='nav-search-box'>
+            <SearchBox placeholder='검색어를 입력하세요' field='name' />
+          </div>
           <div className='nav-icon'>
             <FontAwesomeIcon icon={faUser} />
             {user ? (
@@ -74,22 +72,14 @@ function Navbar({ user }: { user: UserType | null }) {
       <div className={`side-menu ${sideOpen ? 'open' : ''}`}>
         {user && user.level === 'admin' && (
           <div className='side-admin-page'>
-            <Link to='/admin/product'>admin page</Link>
+            <Link to='/admin/product?page=1'>admin page</Link>
           </div>
         )}
         <button className='close-btn' onClick={() => setSideOpen(!sideOpen)}>
           <FontAwesomeIcon icon={faXmark} />
         </button>
         <div className='side-search-box'>
-          <input
-            type='text'
-            placeholder='검색어를 입력하세요'
-            className='side-search-bar'
-          />
-          <FontAwesomeIcon
-            icon={faMagnifyingGlass}
-            className='side-search-icon'
-          />
+          <SearchBox placeholder='검색어를 입력하세요' field='field' />
         </div>
         <ul className='side-menu-list'>
           {menuList.map((menu, index) => (

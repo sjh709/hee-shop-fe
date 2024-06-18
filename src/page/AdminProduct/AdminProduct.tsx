@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { Button, Container } from 'react-bootstrap';
 import ProductTable from './ProductTable/ProductTable';
 import './AdminProduct.style.css';
@@ -8,11 +6,20 @@ import NewItemDialog from './NewItemDialog/NewItemDialog';
 import { useDispatch, useSelector } from 'react-redux';
 import { productActions } from '../../redux/actions/productAction';
 import { RootState } from '../../redux/store';
+import SearchBox from '../../components/SearchBox/SearchBox';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { SearchQueryType } from '../../model/product';
 
 function AdminProduct() {
   const [mode, setMode] = useState<string>('new');
   const [showDialog, setShowDialog] = useState<boolean>(false);
+  const [query, setQuery] = useSearchParams();
+  const [searchQuery, setSearchQuery] = useState<SearchQueryType>({
+    page: query.get('page') || '1',
+    name: query.get('name') || '',
+  });
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { productList } = useSelector((state: RootState) => state.product);
   const tableHeader = [
     '#',
@@ -31,16 +38,27 @@ function AdminProduct() {
   };
 
   useEffect(() => {
-    dispatch(productActions.getProductList());
-  }, []);
+    dispatch(productActions.getProductList({ ...searchQuery }));
+  }, [query]);
+
+  useEffect(() => {
+    if (searchQuery.name === '') {
+      delete searchQuery.name;
+    }
+    const params = new URLSearchParams(searchQuery);
+    const query = params.toString();
+    navigate('?' + query);
+  }, [searchQuery]);
 
   return (
     <>
       <Container className='admin-product'>
-        <div className='search-box mt-3'>
-          <FontAwesomeIcon icon={faMagnifyingGlass} className='search-icon' />
-          <input type='text' placeholder='제품 이름으로 검색' />
-        </div>
+        <SearchBox
+          placeholder='제품 이름으로 검색'
+          field='name'
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+        />
         <Button variant='primary' className='mt-3' onClick={handleClickNewItem}>
           Add New Item +
         </Button>
