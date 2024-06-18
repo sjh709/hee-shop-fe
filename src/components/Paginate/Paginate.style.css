@@ -1,0 +1,18 @@
+.pagination {
+  margin-top: 2rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.pagination-link {
+  transition: all 0.25s;
+  padding: 0.2rem 0.6rem;
+  border-radius: 0.3rem;
+}
+
+.pagination-link-active {
+  background-color: var(--color-light-coral);
+  color: #fefefe;
+}

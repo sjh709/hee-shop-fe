@@ -9,6 +9,7 @@ import { RootState } from '../../redux/store';
 import SearchBox from '../../components/SearchBox/SearchBox';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { SearchQueryType } from '../../model/product';
+import Paginate from '../../components/Paginate/Paginate';
 
 function AdminProduct() {
   const [mode, setMode] = useState<string>('new');
@@ -20,7 +21,9 @@ function AdminProduct() {
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { productList } = useSelector((state: RootState) => state.product);
+  const { productList, totalPageNum } = useSelector(
+    (state: RootState) => state.product
+  );
   const tableHeader = [
     '#',
     'Sku',
@@ -35,6 +38,10 @@ function AdminProduct() {
   const handleClickNewItem = () => {
     setMode('new');
     setShowDialog(true);
+  };
+
+  const handlePageClick = ({ selected }: { selected: number }) => {
+    setSearchQuery({ ...searchQuery, page: String(selected + 1) });
   };
 
   useEffect(() => {
@@ -65,6 +72,11 @@ function AdminProduct() {
         <ProductTable header={tableHeader} data={productList} />
       </Container>
       <NewItemDialog showDialog={showDialog} setShowDialog={setShowDialog} />
+      <Paginate
+        handlePageClick={handlePageClick}
+        totalPageNum={totalPageNum}
+        searchQuery={searchQuery}
+      />
     </>
   );
 }

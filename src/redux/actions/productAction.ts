@@ -35,7 +35,7 @@ function getProductList(query: SearchQueryType): any {
       if (response.status !== 200) throw new Error(response.data.error);
       dispatch({
         type: types.PRODUCT_GET_SUCCESS,
-        payload: response.data.data,
+        payload: response.data,
       });
     } catch (e) {
       const err = e as ErrorType;
