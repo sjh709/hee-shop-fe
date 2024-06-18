@@ -20,3 +20,16 @@ export type StockType = {
 export type CreateProductType = {
   formData: ProductType;
 };
+
+export type ProductListType = {
+  category: string[];
+  description: string;
+  image: string;
+  isDeleted: boolean;
+  name: string;
+  price: number;
+  sku: string;
+  status: string;
+  stock: any;
+  _id: string;
+};

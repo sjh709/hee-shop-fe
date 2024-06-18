@@ -25,4 +25,21 @@ function createProduct({ formData }: CreateProductType): any {
   };
 }
 
-export const productActions = { createProduct };
+function getProductList(): any {
+  return async (dispatch: Dispatch) => {
+    try {
+      dispatch({ type: types.PRODUCT_GET_REQUEST });
+      const response = await api.get('/product');
+      if (response.status !== 200) throw new Error(response.data.error);
+      dispatch({
+        type: types.PRODUCT_GET_SUCCESS,
+        payload: response.data.data,
+      });
+    } catch (e) {
+      const err = e as ErrorType;
+      dispatch({ type: types.PRODUCT_GET_FAIL, payload: err.error });
+    }
+  };
+}
+
+export const productActions = { createProduct, getProductList };
