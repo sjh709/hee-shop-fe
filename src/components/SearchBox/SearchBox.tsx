@@ -7,8 +7,8 @@ import { SearchQueryType } from '../../model/product';
 interface OwnProps {
   placeholder: string;
   field: string;
-  searchQuery?: SearchQueryType;
-  setSearchQuery?: React.Dispatch<React.SetStateAction<SearchQueryType>>;
+  searchQuery: SearchQueryType;
+  setSearchQuery: React.Dispatch<React.SetStateAction<SearchQueryType>>;
 }
 
 function SearchBox({
@@ -29,6 +29,7 @@ function SearchBox({
           [field]: value,
         });
       }
+      setKeyword('');
     }
   };
 

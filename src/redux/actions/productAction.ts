@@ -25,7 +25,11 @@ function createProduct({ formData }: CreateProductType): any {
   };
 }
 
-function getProductList(query: SearchQueryType): any {
+function getProductList(query: {
+  page: string;
+  name?: string;
+  pageSize: number;
+}): any {
   return async (dispatch: Dispatch) => {
     try {
       dispatch({ type: types.PRODUCT_GET_REQUEST });

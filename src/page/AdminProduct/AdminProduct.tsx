@@ -45,8 +45,8 @@ function AdminProduct() {
   };
 
   useEffect(() => {
-    dispatch(productActions.getProductList({ ...searchQuery }));
-  }, [query]);
+    dispatch(productActions.getProductList({ ...searchQuery, pageSize: 3 }));
+  }, [query, showDialog]);
 
   useEffect(() => {
     if (searchQuery.name === '') {

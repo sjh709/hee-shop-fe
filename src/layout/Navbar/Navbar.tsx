@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBagShopping,
@@ -7,22 +7,38 @@ import {
   faUser,
   faXmark,
 } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import './Navbar.style.css';
 import { UserType } from '../../model/user';
 import { useDispatch } from 'react-redux';
 import { userActions } from '../../redux/actions/userAction';
 import SearchBox from '../../components/SearchBox/SearchBox';
+import { SearchQueryType } from '../../model/product';
 
 function Navbar({ user }: { user: UserType | null }) {
   const menuList = ['Women', 'Men', 'Baby', 'Kids', 'Sport', 'Home'];
   const [sideOpen, setSideOpen] = useState<boolean>(false);
+  const [query, setQuery] = useSearchParams();
+  const [searchQuery, setSearchQuery] = useState<SearchQueryType>({
+    page: query.get('page') || '1',
+    name: query.get('name') || '',
+  });
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const logout = () => {
     setSideOpen(false);
     dispatch(userActions.logout());
   };
+
+  useEffect(() => {
+    if (searchQuery.name === '') {
+      delete searchQuery.name;
+    }
+    const params = new URLSearchParams(searchQuery);
+    const query = params.toString();
+    navigate('?' + query);
+  }, [searchQuery]);
 
   return (
     <div className='nav-bar'>
@@ -49,7 +65,12 @@ function Navbar({ user }: { user: UserType | null }) {
             <FontAwesomeIcon icon={faBars} />
           </div>
           <div className='nav-search-box'>
-            <SearchBox placeholder='검색어를 입력하세요' field='name' />
+            <SearchBox
+              placeholder='검색어를 입력하세요'
+              field='name'
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+            />
           </div>
           <div className='nav-icon'>
             <FontAwesomeIcon icon={faUser} />
@@ -79,7 +100,12 @@ function Navbar({ user }: { user: UserType | null }) {
           <FontAwesomeIcon icon={faXmark} />
         </button>
         <div className='side-search-box'>
-          <SearchBox placeholder='검색어를 입력하세요' field='field' />
+          <SearchBox
+            placeholder='검색어를 입력하세요'
+            field='field'
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+          />
         </div>
         <ul className='side-menu-list'>
           {menuList.map((menu, index) => (
