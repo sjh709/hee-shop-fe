@@ -20,7 +20,7 @@ function SearchBox({
   const [keyword, setKeyword] = useState<string>('');
 
   const onCheckEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' && event.nativeEvent.isComposing === false) {
       const value = (event.target as HTMLInputElement).value;
       if (setSearchQuery !== undefined) {
         setSearchQuery({
