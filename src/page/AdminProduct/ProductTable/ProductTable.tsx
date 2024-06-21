@@ -7,9 +7,10 @@ import { currencyFormat } from '../../../utils/number';
 interface OwnProps {
   header: string[];
   data: ProductListType[];
+  openEditForm(product: ProductListType): void;
 }
 
-function ProductTable({ header, data }: OwnProps) {
+function ProductTable({ header, data, openEditForm }: OwnProps) {
   return (
     <Container className='mt-4 product-table'>
       <Row className='header-row'>
@@ -41,7 +42,11 @@ function ProductTable({ header, data }: OwnProps) {
               <Button size='sm' className='me-2' variant='danger'>
                 -
               </Button>
-              <Button size='sm' variant='secondary'>
+              <Button
+                size='sm'
+                variant='secondary'
+                onClick={() => openEditForm(item)}
+              >
                 Edit
               </Button>
             </Col>

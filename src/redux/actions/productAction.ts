@@ -1,4 +1,4 @@
-import { CreateProductType, SearchQueryType } from '../../model/product';
+import { CreateProductType, EditProductType } from '../../model/product';
 import { Dispatch } from 'redux';
 import * as types from '../../constants/product.constants';
 import api from '../../utils/api';
@@ -48,4 +48,23 @@ function getProductList(query: {
   };
 }
 
-export const productActions = { createProduct, getProductList };
+function editProduct(formData: EditProductType, id: string): any {
+  return async (dispatch: Dispatch) => {
+    try {
+      dispatch({ type: types.PRODUCT_EDIT_REQUEST });
+      const response = await api.put(`/product/${id}`, formData);
+      if (response.status !== 200) throw new Error(response.data.error);
+      dispatch({
+        type: types.PRODUCT_EDIT_SUCCESS,
+        payload: response.data.data,
+      });
+      dispatch(commonUIActions.showToastMessage('상품 수정 완료', 'success'));
+      dispatch(getProductList({ page: '1', name: '', pageSize: 3 }));
+    } catch (e) {
+      const err = e as ErrorType;
+      dispatch({ type: types.PRODUCT_EDIT_FAIL, payload: err.error });
+    }
+  };
+}
+
+export const productActions = { createProduct, getProductList, editProduct };

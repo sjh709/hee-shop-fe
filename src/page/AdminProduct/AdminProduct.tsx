@@ -8,8 +8,9 @@ import { productActions } from '../../redux/actions/productAction';
 import { RootState } from '../../redux/store';
 import SearchBox from '../../components/SearchBox/SearchBox';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { SearchQueryType } from '../../model/product';
+import { ProductListType, SearchQueryType } from '../../model/product';
 import Paginate from '../../components/Paginate/Paginate';
+import * as types from '../../constants/product.constants';
 
 function AdminProduct() {
   const [mode, setMode] = useState<string>('new');
@@ -44,6 +45,12 @@ function AdminProduct() {
     setSearchQuery({ ...searchQuery, page: String(selected + 1) });
   };
 
+  const openEditForm = (product: ProductListType) => {
+    setMode('edit');
+    dispatch({ type: types.SET_SELECTED_PRODUCT, payload: product });
+    setShowDialog(true);
+  };
+
   useEffect(() => {
     dispatch(productActions.getProductList({ ...searchQuery, pageSize: 3 }));
   }, [query, showDialog]);
@@ -69,9 +76,17 @@ function AdminProduct() {
         <Button variant='primary' className='mt-3' onClick={handleClickNewItem}>
           Add New Item +
         </Button>
-        <ProductTable header={tableHeader} data={productList} />
+        <ProductTable
+          header={tableHeader}
+          data={productList}
+          openEditForm={openEditForm}
+        />
       </Container>
-      <NewItemDialog showDialog={showDialog} setShowDialog={setShowDialog} />
+      <NewItemDialog
+        showDialog={showDialog}
+        setShowDialog={setShowDialog}
+        mode={mode}
+      />
       <Paginate
         handlePageClick={handlePageClick}
         totalPageNum={totalPageNum}

@@ -6,7 +6,7 @@ export type ProductType = {
   description: string;
   category: string[];
   status: string;
-  price: string;
+  price: string | number;
 };
 
 export type StockType = {
@@ -32,6 +32,19 @@ export type ProductListType = {
   status: string;
   stock: any;
   _id: string;
+};
+
+export type EditProductType = {
+  category: string[];
+  description: string;
+  image: string;
+  isDeleted?: boolean;
+  name: string;
+  price: number | string;
+  sku: string;
+  status: string;
+  stock: {};
+  _id?: string;
 };
 
 export type SearchQueryType = {

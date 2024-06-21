@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Modal, Button, Form, Row, Col } from 'react-bootstrap';
 import { ProductType } from '../../../model/product';
 import { CATEGORY, STATUS, SIZE } from '../../../constants/product.constants';
 import CloudinaryUploadWidget from '../../../utils/CloudinaryUploadWidget';
 import './NewItemDialog.style.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { productActions } from '../../../redux/actions/productAction';
+import { RootState } from '../../../redux/store';
 
 const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME;
 const UPLOADPRESET = process.env.REACT_APP_CLOUDINARY_PRESET;
@@ -13,6 +14,7 @@ const UPLOADPRESET = process.env.REACT_APP_CLOUDINARY_PRESET;
 interface OwnProps {
   showDialog: boolean;
   setShowDialog: React.Dispatch<React.SetStateAction<boolean>>;
+  mode: string;
 }
 
 const InitialFormData = {
@@ -26,8 +28,11 @@ const InitialFormData = {
   price: '0',
 };
 
-function NewItemDialog({ showDialog, setShowDialog }: OwnProps) {
+function NewItemDialog({ showDialog, setShowDialog, mode }: OwnProps) {
   const handleClose = () => setShowDialog(false);
+  const selectedProduct = useSelector(
+    (state: RootState) => state.product.selectedProduct
+  );
   const [formData, setFormData] = useState<ProductType>(InitialFormData);
   const [stock, setStock] = useState<(string[] | [])[]>([]);
   const [stockError, setStockError] = useState<boolean>(false);
@@ -88,18 +93,51 @@ function NewItemDialog({ showDialog, setShowDialog }: OwnProps) {
     const totalStock = stock.reduce((acc, cur) => {
       return { ...acc, [cur[0]]: parseInt(cur[1]) };
     }, {});
-    dispatch(
-      productActions.createProduct({
-        formData: { ...formData, stock: totalStock },
-      })
-    );
+
+    if (mode === 'new') {
+      dispatch(
+        productActions.createProduct({
+          formData: { ...formData, stock: totalStock },
+        })
+      );
+    } else {
+      if (selectedProduct !== null) {
+        dispatch(
+          productActions.editProduct(
+            { ...formData, stock: totalStock },
+            selectedProduct._id
+          )
+        );
+      }
+    }
+
     setShowDialog(false);
   };
+
+  useEffect(() => {
+    if (showDialog) {
+      if (mode === 'edit' && selectedProduct !== null) {
+        setFormData(selectedProduct);
+        const stockArray = Object.keys(selectedProduct.stock).map((size) => [
+          size,
+          selectedProduct.stock[size],
+        ]);
+        setStock(stockArray);
+      } else {
+        setFormData({ ...InitialFormData });
+        setStock([]);
+      }
+    }
+  }, [showDialog]);
 
   return (
     <Modal size='lg' show={showDialog} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Create New Product</Modal.Title>
+        {mode === 'new' ? (
+          <Modal.Title>Create New Product</Modal.Title>
+        ) : (
+          <Modal.Title>Edit Product</Modal.Title>
+        )}
       </Modal.Header>
       <Form onSubmit={handelSubmit}>
         <Modal.Body className='p-3'>
@@ -155,9 +193,9 @@ function NewItemDialog({ showDialog, setShowDialog }: OwnProps) {
                       onChange={(event) =>
                         handleSizeChange(event.target.value, index)
                       }
-                      defaultValue={item[0] ? item[0].toLowerCase() : ''}
+                      value={item[0] ? item[0].toLowerCase() : ''}
                     >
-                      <option value='' hidden>
+                      <option value='' disabled>
                         선택
                       </option>
                       {SIZE.map((item, index) => (
@@ -258,9 +296,15 @@ function NewItemDialog({ showDialog, setShowDialog }: OwnProps) {
           </Row>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant='primary' type='submit'>
-            Submit
-          </Button>
+          {mode === 'new' ? (
+            <Button variant='primary' type='submit'>
+              Submit
+            </Button>
+          ) : (
+            <Button variant='primary' type='submit'>
+              Edit
+            </Button>
+          )}
         </Modal.Footer>
       </Form>
     </Modal>
