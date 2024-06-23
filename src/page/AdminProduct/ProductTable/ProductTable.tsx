@@ -31,7 +31,7 @@ function ProductTable({ header, data, openEditForm, deleteItem }: OwnProps) {
             <Col className='table-col'>
               {Object.keys(item.stock).map((size, index) => (
                 <div key={index}>
-                  {size}: {item.stock[size]}
+                  {size.toUpperCase()}: {item.stock[size]}
                 </div>
               ))}
             </Col>

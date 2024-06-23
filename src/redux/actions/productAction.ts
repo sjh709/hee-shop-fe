@@ -83,9 +83,28 @@ function deleteProduct(id: string): any {
   };
 }
 
+function getProductDetail(id: string | undefined): any {
+  return async (dispatch: Dispatch) => {
+    try {
+      dispatch({ type: types.GET_PRODUCT_DETAIL_REQUEST });
+      const response = await api.get(`/product/${id}`);
+      if (response.status !== 200) throw new Error(response.data.error);
+      dispatch({
+        type: types.GET_PRODUCT_DETAIL_SUCCESS,
+        payload: response.data.data,
+      });
+    } catch (e) {
+      const err = e as ErrorType;
+      dispatch({ type: types.GET_PRODUCT_DETAIL_FAIL, payload: err.error });
+      dispatch(commonUIActions.showToastMessage(err.error, 'error'));
+    }
+  };
+}
+
 export const productActions = {
   createProduct,
   getProductList,
   editProduct,
   deleteProduct,
+  getProductDetail,
 };

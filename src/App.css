@@ -57,3 +57,18 @@ button {
 .text-primary {
   color: var(--color-light-coral) !important;
 }
+
+.dropdown-menu {
+  --bs-dropdown-link-active-bg: var(--color-light-gray);
+}
+
+.btn-secondary {
+  --bs-btn-color: var(--color-black);
+  --bs-btn-bg: var(--color-white);
+  --bs-btn-hover-bg: var(--color-dark-gray);
+  --bs-btn-hover-border-color: var(--color-dark-gray);
+  --bs-btn-active-bg: var(--color-light-coral);
+  --bs-btn-active-border-color: var(--color-light-coral);
+  --bs-btn-disabled-bg: var(--color-dark-coral);
+  --bs-btn-disabled-border-color: var(--color-dark-coral);
+}

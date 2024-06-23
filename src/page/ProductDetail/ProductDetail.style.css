@@ -1,0 +1,30 @@
+.detail-img {
+  width: 100%;
+}
+
+.drop-down {
+  margin-top: 1rem;
+}
+
+.size-drop-down {
+  width: 100%;
+}
+
+.add-button {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.detail-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.detail-price {
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+.detail-desc {
+  margin-top: 0.5rem;
+}

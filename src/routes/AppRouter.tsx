@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router';
 import ProductAll from '../page/ProductAll/ProductAll';
 import LoginPage from '../page/LoginPage/LoginPage';
 import RegisterPage from '../page/RegisterPage/RegisterPage';
-import ProductDetail from '../page/ProductDetail';
+import ProductDetail from '../page/ProductDetail/ProductDetail';
 import PrivateRoute from './PrivateRoute';
 import AdminProduct from '../page/AdminProduct/AdminProduct';
 import AdminOrderPage from '../page/AdminOrderPage/AdminOrderPage';
