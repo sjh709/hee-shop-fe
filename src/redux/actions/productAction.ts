@@ -67,4 +67,25 @@ function editProduct(formData: EditProductType, id: string): any {
   };
 }
 
-export const productActions = { createProduct, getProductList, editProduct };
+function deleteProduct(id: string): any {
+  return async (dispatch: Dispatch) => {
+    try {
+      dispatch({ type: types.PRODUCT_DELETE_REQUEST });
+      const response = await api.delete(`/product/${id}`);
+      if (response.status !== 200) throw new Error(response.data.error);
+      dispatch({ type: types.PRODUCT_DELETE_SUCCESS });
+      dispatch(commonUIActions.showToastMessage('상품 삭제 완료', 'success'));
+      dispatch(getProductList({ page: '1', pageSize: 3 }));
+    } catch (e) {
+      const err = e as ErrorType;
+      dispatch({ type: types.PRODUCT_DELETE_FAIL, payload: err.error });
+    }
+  };
+}
+
+export const productActions = {
+  createProduct,
+  getProductList,
+  editProduct,
+  deleteProduct,
+};

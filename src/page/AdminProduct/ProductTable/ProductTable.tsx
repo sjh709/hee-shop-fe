@@ -8,9 +8,10 @@ interface OwnProps {
   header: string[];
   data: ProductListType[];
   openEditForm(product: ProductListType): void;
+  deleteItem(id: string): void;
 }
 
-function ProductTable({ header, data, openEditForm }: OwnProps) {
+function ProductTable({ header, data, openEditForm, deleteItem }: OwnProps) {
   return (
     <Container className='mt-4 product-table'>
       <Row className='header-row'>
@@ -39,7 +40,12 @@ function ProductTable({ header, data, openEditForm }: OwnProps) {
             </Col>
             <Col className='table-col'>{item.status}</Col>
             <Col className='table-col'>
-              <Button size='sm' className='me-2' variant='danger'>
+              <Button
+                size='sm'
+                className='me-2'
+                variant='danger'
+                onClick={() => deleteItem(item._id)}
+              >
                 -
               </Button>
               <Button

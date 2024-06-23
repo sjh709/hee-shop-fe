@@ -51,6 +51,10 @@ function AdminProduct() {
     setShowDialog(true);
   };
 
+  const deleteItem = (id: string) => {
+    dispatch(productActions.deleteProduct(id));
+  };
+
   useEffect(() => {
     dispatch(productActions.getProductList({ ...searchQuery, pageSize: 3 }));
   }, [query, showDialog]);
@@ -80,6 +84,7 @@ function AdminProduct() {
           header={tableHeader}
           data={productList}
           openEditForm={openEditForm}
+          deleteItem={deleteItem}
         />
       </Container>
       <NewItemDialog
