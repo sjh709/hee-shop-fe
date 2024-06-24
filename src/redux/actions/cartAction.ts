@@ -50,4 +50,22 @@ function getCartList(): any {
   };
 }
 
-export const cartActions = { addToCart, getCartList };
+function deleteCartItem(id: string): any {
+  return async (dispatch: Dispatch) => {
+    try {
+      dispatch({ type: types.DELETE_CART_ITEM_REQUEST });
+      const response = await api.delete(`/cart/${id}`);
+      if (response.status !== 200) throw new Error(response.data.error);
+      dispatch({
+        type: types.DELETE_CART_ITEM_SUCCESS,
+        payload: response.data.cartItemQty,
+      });
+      dispatch(getCartList());
+    } catch (e) {
+      const err = e as ErrorType;
+      dispatch({ type: types.DELETE_CART_ITEM_FAIL, payload: err.error });
+    }
+  };
+}
+
+export const cartActions = { addToCart, getCartList, deleteCartItem };

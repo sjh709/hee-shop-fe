@@ -5,12 +5,20 @@ import { Col, Row, Form } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { currencyFormat } from '../../../utils/number';
+import { useDispatch } from 'react-redux';
+import { cartActions } from '../../../redux/actions/cartAction';
 
 interface OwnProps {
   item: CartListType;
 }
 
 function CartProductCard({ item }: OwnProps) {
+  const dispatch = useDispatch();
+
+  const deleteCart = (id: string) => {
+    dispatch(cartActions.deleteCartItem(id));
+  };
+
   return (
     <div className='product-card-cart'>
       <Row>
@@ -20,7 +28,10 @@ function CartProductCard({ item }: OwnProps) {
         <Col md={10}>
           <div className='display-flex'>
             <h3>{item.productId.name}</h3>
-            <button className='trash-button'>
+            <button
+              className='trash-button'
+              onClick={() => deleteCart(item._id)}
+            >
               <FontAwesomeIcon icon={faTrash} />
             </button>
           </div>
