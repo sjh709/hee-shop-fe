@@ -2,19 +2,40 @@ import React, { useEffect, useState } from 'react';
 import './ProductDetail.style.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { productActions } from '../../redux/actions/productAction';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { RootState } from '../../redux/store';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 import { Button, Col, Container, Dropdown, Row } from 'react-bootstrap';
 import { currencyFormat } from '../../utils/number';
+import { cartActions } from '../../redux/actions/cartAction';
 
 function ProductDetail() {
   const [size, setSize] = useState<string>('');
+  const [sizeError, setSizeError] = useState<boolean>(false);
   const { id } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { user } = useSelector((state: RootState) => state.user);
   const { selectedProduct, loading } = useSelector(
     (state: RootState) => state.product
   );
+
+  const selectSize = (value: string) => {
+    if (sizeError) setSizeError(false);
+    setSize(value);
+  };
+
+  const addItemToCart = () => {
+    // 사이즈를 선택안했다면 에러
+    if (size === '') {
+      setSizeError(true);
+      return;
+    }
+    // 로그인을 안했으면 로그인페이지로
+    if (!user) navigate('/login');
+    // 카트에 아이템 추가
+    dispatch(cartActions.addToCart({ id, size }));
+  };
 
   useEffect(() => {
     dispatch(productActions.getProductDetail(id));
@@ -39,9 +60,12 @@ function ProductDetail() {
           <div>
             <Dropdown
               className='drop-down'
-              onSelect={(value) => value !== null && setSize(value)}
+              onSelect={(value) => value !== null && selectSize(value)}
             >
-              <Dropdown.Toggle variant='secondary' className='size-drop-down'>
+              <Dropdown.Toggle
+                variant={sizeError ? 'outline-danger' : 'secondary'}
+                className='size-drop-down'
+              >
                 {size ? size.toUpperCase() : '사이즈 선택'}
               </Dropdown.Toggle>
               <Dropdown.Menu className='size-drop-down'>
@@ -60,7 +84,12 @@ function ProductDetail() {
                   )}
               </Dropdown.Menu>
             </Dropdown>
-            <Button className='add-button'>추가</Button>
+            <div className='warning-message'>
+              {sizeError && '사이즈를 선택해주세요.'}
+            </div>
+            <Button className='add-button' onClick={addItemToCart}>
+              추가
+            </Button>
           </div>
         </Col>
       </Row>

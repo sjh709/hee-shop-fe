@@ -28,3 +28,8 @@
 .detail-desc {
   margin-top: 0.5rem;
 }
+
+.warning-message {
+  color: red;
+  margin-top: 0.3rem;
+}

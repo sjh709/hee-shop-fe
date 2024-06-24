@@ -10,15 +10,17 @@ import {
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import './Navbar.style.css';
 import { UserType } from '../../model/user';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../../redux/actions/userAction';
 import SearchBox from '../../components/SearchBox/SearchBox';
 import { SearchQueryType } from '../../model/product';
+import { RootState } from '../../redux/store';
 
 function Navbar({ user }: { user: UserType | null }) {
   const menuList = ['Women', 'Men', 'Baby', 'Kids', 'Sport', 'Home'];
   const [sideOpen, setSideOpen] = useState<boolean>(false);
   const [query, setQuery] = useSearchParams();
+  const { cartItemQty } = useSelector((state: RootState) => state.cart);
   const [searchQuery, setSearchQuery] = useState<SearchQueryType>({
     page: query.get('page') || '1',
     name: query.get('name') || '',
@@ -86,7 +88,7 @@ function Navbar({ user }: { user: UserType | null }) {
           </div>
           <div className='nav-icon'>
             <FontAwesomeIcon icon={faBagShopping} />
-            <Link to='/'>쇼핑백</Link>
+            <Link to='/'>쇼핑백 ({cartItemQty || 0})</Link>
           </div>
         </div>
       </div>
@@ -129,7 +131,7 @@ function Navbar({ user }: { user: UserType | null }) {
           </div>
           <div className='side-menu-icon'>
             <FontAwesomeIcon icon={faBagShopping} />
-            <Link to='/'>쇼핑백</Link>
+            <Link to='/'>쇼핑백 ({cartItemQty || 0})</Link>
           </div>
         </div>
       </div>
