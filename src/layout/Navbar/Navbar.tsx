@@ -88,7 +88,7 @@ function Navbar({ user }: { user: UserType | null }) {
           </div>
           <div className='nav-icon'>
             <FontAwesomeIcon icon={faBagShopping} />
-            <Link to='/'>쇼핑백 ({cartItemQty || 0})</Link>
+            <Link to='/cart'>쇼핑백({cartItemQty || 0})</Link>
           </div>
         </div>
       </div>
@@ -131,7 +131,7 @@ function Navbar({ user }: { user: UserType | null }) {
           </div>
           <div className='side-menu-icon'>
             <FontAwesomeIcon icon={faBagShopping} />
-            <Link to='/'>쇼핑백 ({cartItemQty || 0})</Link>
+            <Link to='/cart'>쇼핑백({cartItemQty || 0})</Link>
           </div>
         </div>
       </div>

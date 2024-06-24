@@ -1,0 +1,10 @@
+.text-align-center {
+  margin-top: 3rem;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.empty-bag {
+  background-color: var(--color-snow);
+  padding: 20px;
+}
