@@ -33,4 +33,21 @@ function addToCart({
   };
 }
 
-export const cartActions = { addToCart };
+function getCartList(): any {
+  return async (dispatch: Dispatch) => {
+    try {
+      dispatch({ type: types.GET_CART_LIST_REQUEST });
+      const response = await api.get('/cart');
+      if (response.status !== 200) throw new Error(response.data.error);
+      dispatch({
+        type: types.GET_CART_LIST_SUCCESS,
+        payload: response.data.data,
+      });
+    } catch (e) {
+      const err = e as ErrorType;
+      dispatch({ type: types.GET_CART_LIST_FAIL, payload: err.error });
+    }
+  };
+}
+
+export const cartActions = { addToCart, getCartList };

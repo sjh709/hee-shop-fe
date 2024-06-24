@@ -1,0 +1,23 @@
+.product-card-cart {
+  background-color: var(--color-snow);
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.trash-button {
+  background-color: var(--color-white);
+  border: 1px solid gray;
+  padding: 2px 7px;
+}
+
+.qty-dropdown {
+  max-width: 400px;
+}
+
+.text-bold {
+  font-weight: 500;
+}
+
+.card-content {
+  font-size: 0.9rem;
+}
