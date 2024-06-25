@@ -8,6 +8,7 @@ import PrivateRoute from './PrivateRoute';
 import AdminProduct from '../page/AdminProduct/AdminProduct';
 import AdminOrderPage from '../page/AdminOrderPage/AdminOrderPage';
 import CartPage from '../page/CartPage/CartPage';
+import PaymentPage from '../page/PaymentPage/PaymentPage';
 
 function AppRouter() {
   return (
@@ -18,6 +19,7 @@ function AppRouter() {
       <Route path='/product/:id' element={<ProductDetail />} />
       <Route element={<PrivateRoute permissionLevel='customer' />}>
         <Route path='/cart' element={<CartPage />} />
+        <Route path='/payment' element={<PaymentPage />} />
       </Route>
       <Route element={<PrivateRoute permissionLevel='admin' />}>
         <Route path='/admin/product' element={<AdminProduct />} />

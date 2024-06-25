@@ -3,6 +3,7 @@ import './OrderReceipt.style.css';
 import { Button } from 'react-bootstrap';
 import { CartListType } from '../../../model/cart';
 import { currencyFormat } from '../../../utils/number';
+import { useNavigate } from 'react-router-dom';
 
 interface OwnProps {
   cartList: CartListType[];
@@ -10,6 +11,8 @@ interface OwnProps {
 }
 
 function OrderReceipt({ cartList, totalPrice }: OwnProps) {
+  const navigate = useNavigate();
+
   return (
     <div className='receipt-container'>
       <h3 className='receipt-title'>주문 내역</h3>
@@ -33,7 +36,9 @@ function OrderReceipt({ cartList, totalPrice }: OwnProps) {
           <strong>&#8361; {currencyFormat(totalPrice)}</strong>
         </div>
       </div>
-      <Button className='payment-button'>결제 계속하기</Button>
+      <Button className='payment-button' onClick={() => navigate('/payment')}>
+        결제 계속하기
+      </Button>
     </div>
   );
 }
