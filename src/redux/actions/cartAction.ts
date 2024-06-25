@@ -68,4 +68,27 @@ function deleteCartItem(id: string): any {
   };
 }
 
-export const cartActions = { addToCart, getCartList, deleteCartItem };
+function updateQty(id: string, value: string): any {
+  return async (dispatch: Dispatch) => {
+    try {
+      dispatch({ type: types.UPDATE_CART_ITEM_REQUEST });
+      const response = await api.put(`/cart/${id}`, { qty: value });
+      if (response.status !== 200) throw new Error(response.data.error);
+      dispatch({
+        type: types.UPDATE_CART_ITEM_SUCCESS,
+        payload: response.data.data,
+      });
+    } catch (e) {
+      const err = e as ErrorType;
+      dispatch({ type: types.UPDATE_CART_ITEM_FAIL, payload: err.error });
+      dispatch(commonUIActions.showToastMessage(err.error, 'error'));
+    }
+  };
+}
+
+export const cartActions = {
+  addToCart,
+  getCartList,
+  deleteCartItem,
+  updateQty,
+};

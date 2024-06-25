@@ -19,6 +19,10 @@ function CartProductCard({ item }: OwnProps) {
     dispatch(cartActions.deleteCartItem(id));
   };
 
+  const handleQtyChange = (id: string, value: string) => {
+    dispatch(cartActions.updateQty(id, value));
+  };
+
   return (
     <div className='product-card-cart'>
       <Row>
@@ -43,9 +47,18 @@ function CartProductCard({ item }: OwnProps) {
             합계: &#8361; {currencyFormat(item.productId.price * item.qty)}
           </div>
           <div className='card-content mt-2'>
-            <Form.Select className='qty-dropdown'>
+            <Form.Select
+              className='qty-dropdown'
+              onChange={(event) =>
+                handleQtyChange(item._id, event.target.value)
+              }
+              value={item.qty}
+            >
               <option value={1}>1</option>
               <option value={2}>2</option>
+              <option value={3}>3</option>
+              <option value={4}>4</option>
+              <option value={5}>5</option>
             </Form.Select>
           </div>
         </Col>
