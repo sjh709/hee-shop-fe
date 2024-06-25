@@ -1,9 +1,9 @@
 import React from 'react';
 import './OrderReceipt.style.css';
 import { Button } from 'react-bootstrap';
-import { CartListType } from '../../../model/cart';
-import { currencyFormat } from '../../../utils/number';
-import { useNavigate } from 'react-router-dom';
+import { CartListType } from '../../model/cart';
+import { currencyFormat } from '../../utils/number';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 interface OwnProps {
   cartList: CartListType[];
@@ -12,6 +12,7 @@ interface OwnProps {
 
 function OrderReceipt({ cartList, totalPrice }: OwnProps) {
   const navigate = useNavigate();
+  const location = useLocation();
 
   return (
     <div className='receipt-container'>
@@ -36,9 +37,11 @@ function OrderReceipt({ cartList, totalPrice }: OwnProps) {
           <strong>&#8361; {currencyFormat(totalPrice)}</strong>
         </div>
       </div>
-      <Button className='payment-button' onClick={() => navigate('/payment')}>
-        결제 계속하기
-      </Button>
+      {location.pathname.includes('/cart') && (
+        <Button className='payment-button' onClick={() => navigate('/payment')}>
+          결제 계속하기
+        </Button>
+      )}
     </div>
   );
 }

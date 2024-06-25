@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import './CartPage.style.css';
 import { Container, Row, Col } from 'react-bootstrap';
-import OrderReceipt from './OrderReceipt/OrderReceipt';
+import OrderReceipt from '../../components/OrderReceipt/OrderReceipt';
 import { useDispatch, useSelector } from 'react-redux';
 import { cartActions } from '../../redux/actions/cartAction';
 import { RootState } from '../../redux/store';

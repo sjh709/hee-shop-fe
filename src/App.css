@@ -73,3 +73,8 @@ button {
   --bs-btn-disabled-bg: var(--color-dark-coral);
   --bs-btn-disabled-border-color: var(--color-dark-coral);
 }
+
+/* react-credit-cards-2 */
+.rccs {
+  margin: 0 !important;
+}
