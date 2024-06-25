@@ -1,5 +1,6 @@
 import * as types from '../../constants/cart.constants';
 import { CartListType } from '../../model/cart';
+import { LOGOUT } from '../../constants/user.constants';
 
 interface ActionType {
   type: string;
@@ -28,10 +29,13 @@ function cartReducer(
 ): StateType {
   const { type, payload } = action;
   switch (type) {
+    case LOGOUT:
+      return { ...state, cartItemQty: 0 };
     case types.ADD_TO_CART_REQUEST:
     case types.GET_CART_LIST_REQUEST:
     case types.DELETE_CART_ITEM_REQUEST:
     case types.UPDATE_CART_ITEM_REQUEST:
+    case types.GET_CART_QTY_REQUEST:
       return { ...state, loading: true };
     case types.ADD_TO_CART_SUCCESS:
       return { ...state, loading: false, cartItemQty: payload };
@@ -48,11 +52,13 @@ function cartReducer(
         ),
       };
     case types.DELETE_CART_ITEM_SUCCESS:
+    case types.GET_CART_QTY_SUCCESS:
       return { ...state, loading: false, cartItemQty: payload };
     case types.ADD_TO_CART_FAIL:
     case types.GET_CART_LIST_FAIL:
     case types.DELETE_CART_ITEM_FAIL:
     case types.UPDATE_CART_ITEM_FAIL:
+    case types.GET_CART_QTY_FAIL:
       return { ...state, loading: false, error: payload };
     default:
       return state;

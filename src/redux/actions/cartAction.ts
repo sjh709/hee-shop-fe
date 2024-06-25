@@ -86,9 +86,28 @@ function updateQty(id: string, value: string): any {
   };
 }
 
+function getCartQty(): any {
+  return async (dispatch: Dispatch) => {
+    try {
+      dispatch({ type: types.GET_CART_QTY_REQUEST });
+      const response = await api.get('/cart/qty');
+      if (response.status !== 200) throw new Error(response.data.error);
+      dispatch({
+        type: types.GET_CART_QTY_SUCCESS,
+        payload: response.data.qty,
+      });
+    } catch (e) {
+      const err = e as ErrorType;
+      dispatch({ type: types.GET_CART_QTY_FAIL, payload: err.error });
+      dispatch(commonUIActions.showToastMessage(err.error, 'error'));
+    }
+  };
+}
+
 export const cartActions = {
   addToCart,
   getCartList,
   deleteCartItem,
   updateQty,
+  getCartQty,
 };

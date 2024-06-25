@@ -15,6 +15,7 @@ import { userActions } from '../../redux/actions/userAction';
 import SearchBox from '../../components/SearchBox/SearchBox';
 import { SearchQueryType } from '../../model/product';
 import { RootState } from '../../redux/store';
+import { cartActions } from '../../redux/actions/cartAction';
 
 function Navbar({ user }: { user: UserType | null }) {
   const menuList = ['Women', 'Men', 'Baby', 'Kids', 'Sport', 'Home'];
@@ -32,6 +33,12 @@ function Navbar({ user }: { user: UserType | null }) {
     setSideOpen(false);
     dispatch(userActions.logout());
   };
+
+  useEffect(() => {
+    if (user) {
+      dispatch(cartActions.getCartQty());
+    }
+  }, [user]);
 
   useEffect(() => {
     if (searchQuery.name === '') {
