@@ -37,7 +37,7 @@ function OrderReceipt({ cartList, totalPrice }: OwnProps) {
           <strong>&#8361; {currencyFormat(totalPrice)}</strong>
         </div>
       </div>
-      {location.pathname.includes('/cart') && (
+      {location.pathname.includes('/cart') && cartList.length > 0 && (
         <Button className='payment-button' onClick={() => navigate('/payment')}>
           결제 계속하기
         </Button>

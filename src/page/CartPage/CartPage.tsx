@@ -25,7 +25,7 @@ function CartPage() {
   return (
     <Container>
       <Row>
-        <Col md={7} className='cart-card-margin'>
+        <Col md={7}>
           {cartList.length > 0 ? (
             cartList.map((item) => (
               <CartProductCard item={item} key={item._id} />
