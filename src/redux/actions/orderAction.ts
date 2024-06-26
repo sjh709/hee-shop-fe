@@ -4,13 +4,17 @@ import * as types from '../../constants/order.constants';
 import api from '../../utils/api';
 import { commonUIActions } from './commonUIAction';
 import { cartActions } from './cartAction';
+import { NavigateFunction } from 'react-router-dom';
 
 interface ErrorType {
   type: string;
   error: string;
 }
 
-function createOrder(data: CreateOrderPropsType): any {
+function createOrder(
+  data: CreateOrderPropsType,
+  navigate: NavigateFunction
+): any {
   return async (dispatch: Dispatch) => {
     try {
       dispatch({ type: types.CREATE_ORDER_REQUEST });
@@ -21,6 +25,7 @@ function createOrder(data: CreateOrderPropsType): any {
         payload: response.data.orderNum,
       });
       dispatch(cartActions.getCartQty());
+      navigate('/payment/success');
     } catch (e) {
       const err = e as ErrorType;
       dispatch({ type: types.CREATE_ORDER_FAIL, payload: err.error });

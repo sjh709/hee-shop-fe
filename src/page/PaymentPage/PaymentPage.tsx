@@ -69,7 +69,7 @@ function PaymentPage() {
         };
       }),
     };
-    dispatch(orderActions.createOrder(data));
+    dispatch(orderActions.createOrder(data, navigate));
   };
 
   if (cartList.length === 0) {
