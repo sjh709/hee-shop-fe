@@ -70,3 +70,38 @@ export type BadgeBgType = {
   refund: string;
   delivered: string;
 };
+
+export type GetOrderListType = {
+  contact: {
+    firstName: string;
+    lastName: string;
+    contact: string;
+  };
+  createdAt: string;
+  items: {
+    price: number;
+    productId: {
+      image: string;
+      name: string;
+      _id: string;
+    };
+    qty: number;
+    size: string;
+    _id: string;
+  }[];
+  orderNum: string;
+  shipTo: {
+    address1: string;
+    address2: string;
+    zip: string;
+  };
+  status: string;
+  totalPrice: number;
+  userId: {
+    email: string;
+    level: string;
+    name: string;
+    _id: string;
+  };
+  _id: string;
+};

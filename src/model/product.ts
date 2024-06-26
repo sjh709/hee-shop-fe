@@ -50,4 +50,5 @@ export type EditProductType = {
 export type SearchQueryType = {
   page: string;
   name?: string;
+  orderNum?: string;
 };

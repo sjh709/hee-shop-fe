@@ -10,7 +10,6 @@ interface OwnProps {
 }
 
 function OrderStatusCard({ orderItem }: OwnProps) {
-  console.log('oo', orderItem);
   return (
     <div>
       <Row className='status-card'>
@@ -26,7 +25,8 @@ function OrderStatusCard({ orderItem }: OwnProps) {
           <div className='text-12 mb-1'>{orderItem.createdAt.slice(0, 10)}</div>
           <div>
             {orderItem.items[0]?.productId?.name}
-            {orderItem.items.length > 1 && `외 ${orderItem.items.length - 1}개`}
+            {orderItem.items.length > 1 &&
+              ` 외 ${orderItem.items.length - 1}개`}
           </div>
           <div>&#8361; {currencyFormat(orderItem.totalPrice)}</div>
         </Col>
