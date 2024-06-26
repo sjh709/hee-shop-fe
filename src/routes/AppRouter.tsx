@@ -9,6 +9,7 @@ import AdminProduct from '../page/AdminProduct/AdminProduct';
 import AdminOrderPage from '../page/AdminOrderPage/AdminOrderPage';
 import CartPage from '../page/CartPage/CartPage';
 import PaymentPage from '../page/PaymentPage/PaymentPage';
+import OrderCompletePage from '../page/OrderCompletePage/OrderCompletePage';
 
 function AppRouter() {
   return (
@@ -20,6 +21,7 @@ function AppRouter() {
       <Route element={<PrivateRoute permissionLevel='customer' />}>
         <Route path='/cart' element={<CartPage />} />
         <Route path='/payment' element={<PaymentPage />} />
+        <Route path='/payment/success' element={<OrderCompletePage />} />
       </Route>
       <Route element={<PrivateRoute permissionLevel='admin' />}>
         <Route path='/admin/product' element={<AdminProduct />} />
