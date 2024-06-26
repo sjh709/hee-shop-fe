@@ -7,6 +7,7 @@ import { SearchQueryType } from '../../model/product';
 import { useDispatch, useSelector } from 'react-redux';
 import { orderActions } from '../../redux/actions/orderAction';
 import { RootState } from '../../redux/store';
+import Paginate from '../../components/Paginate/Paginate';
 
 function AdminOrderPage() {
   const dispatch = useDispatch();
@@ -16,7 +17,9 @@ function AdminOrderPage() {
     page: query.get('page') || '1',
     orderNum: query.get('orderNum') || '',
   });
-  const { adminOrderList } = useSelector((state: RootState) => state.order);
+  const { adminOrderList, totalPageNum } = useSelector(
+    (state: RootState) => state.order
+  );
   const tableHeader = [
     '#',
     'Order Num',
@@ -27,6 +30,10 @@ function AdminOrderPage() {
     'Total Price',
     'Status',
   ];
+
+  const handlePageClick = ({ selected }: { selected: number }) => {
+    setSearchQuery({ ...searchQuery, page: String(selected + 1) });
+  };
 
   useEffect(() => {
     dispatch(orderActions.getOrderList({ ...searchQuery }));
@@ -42,15 +49,22 @@ function AdminOrderPage() {
   }, [searchQuery]);
 
   return (
-    <Container className='admin-product'>
-      <SearchBox
-        placeholder='주문 번호로 검색'
-        field='orderNum'
+    <>
+      <Container className='admin-product'>
+        <SearchBox
+          placeholder='주문 번호로 검색'
+          field='orderNum'
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+        />
+        <OrderTable header={tableHeader} data={adminOrderList} />
+      </Container>
+      <Paginate
+        handlePageClick={handlePageClick}
+        totalPageNum={totalPageNum}
         searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
       />
-      <OrderTable header={tableHeader} data={adminOrderList} />
-    </Container>
+    </>
   );
 }
 

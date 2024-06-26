@@ -62,7 +62,7 @@ function getOrderList(query: { page: string; orderNum?: string }): any {
       if (response.status !== 200) throw new Error(response.data.error);
       dispatch({
         type: types.GET_ORDER_LIST_SUCCESS,
-        payload: response.data.data,
+        payload: response.data,
       });
     } catch (e) {
       const err = e as ErrorType;
