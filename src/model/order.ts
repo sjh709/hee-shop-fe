@@ -40,3 +40,33 @@ export type OrderListType = {
   qty: number;
   size: string;
 };
+
+export type GetOrderType = {
+  createdAt: string;
+  items: GetOrderItemType[];
+  orderNum: string;
+  status: string;
+  totalPrice: number;
+  userId: string;
+  _id: string;
+};
+
+export type GetOrderItemType = {
+  price: number;
+  productId: {
+    image: string;
+    name: string;
+    _id: string;
+  };
+  qty: number;
+  size: string;
+  _id: string;
+};
+
+export type BadgeBgType = {
+  [index: string]: string;
+  preparing: string;
+  shipping: string;
+  refund: string;
+  delivered: string;
+};

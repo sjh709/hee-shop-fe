@@ -1,0 +1,17 @@
+.status-card {
+  background-color: var(--color-snow);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.24);
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.order-status-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-12 {
+  font-size: 12px;
+}

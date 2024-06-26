@@ -7,7 +7,6 @@ import { RootState } from '../../redux/store';
 
 function OrderCompletePage() {
   const { orderNum } = useSelector((state: RootState) => state.order);
-  console.log('orderNum', orderNum);
 
   if (orderNum === '') {
     return (
@@ -36,7 +35,7 @@ function OrderCompletePage() {
       <div>
         주문 확인은 내 주문 메뉴에서 확인해주세요.
         <div className='link-align-center'>
-          <Link to=''>내 주문 바로가기</Link>
+          <Link to='/account/purchase'>내 주문 바로가기</Link>
         </div>
       </div>
     </Container>

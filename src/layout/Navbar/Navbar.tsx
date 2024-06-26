@@ -90,12 +90,12 @@ function Navbar({ user }: { user: UserType | null }) {
             )}
           </div>
           <div className='nav-icon'>
-            <FontAwesomeIcon icon={faBox} />
-            <Link to='/'>내 주문</Link>
-          </div>
-          <div className='nav-icon'>
             <FontAwesomeIcon icon={faBagShopping} />
             <Link to='/cart'>쇼핑백({cartItemQty || 0})</Link>
+          </div>
+          <div className='nav-icon'>
+            <FontAwesomeIcon icon={faBox} />
+            <Link to='/account/purchase'>내 주문</Link>
           </div>
         </div>
       </div>
@@ -133,12 +133,12 @@ function Navbar({ user }: { user: UserType | null }) {
             )}
           </div>
           <div className='side-menu-icon'>
-            <FontAwesomeIcon icon={faBox} />
-            <Link to='/'>내 주문</Link>
-          </div>
-          <div className='side-menu-icon'>
             <FontAwesomeIcon icon={faBagShopping} />
             <Link to='/cart'>쇼핑백({cartItemQty || 0})</Link>
+          </div>
+          <div className='side-menu-icon'>
+            <FontAwesomeIcon icon={faBox} />
+            <Link to='/account/purchase'>내 주문</Link>
           </div>
         </div>
       </div>
