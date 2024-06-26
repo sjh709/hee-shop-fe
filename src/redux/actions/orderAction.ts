@@ -52,11 +52,13 @@ function getOrder(): any {
   };
 }
 
-function getOrderList(): any {
+function getOrderList(query: { page: string; orderNum?: string }): any {
   return async (dispatch: Dispatch) => {
     try {
       dispatch({ type: types.GET_ORDER_LIST_REQUEST });
-      const response = await api.get('/order');
+      const response = await api.get('/order', {
+        params: { ...query },
+      });
       if (response.status !== 200) throw new Error(response.data.error);
       dispatch({
         type: types.GET_ORDER_LIST_SUCCESS,

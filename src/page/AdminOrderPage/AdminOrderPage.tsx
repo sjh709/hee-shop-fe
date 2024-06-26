@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import SearchBox from '../../components/SearchBox/SearchBox';
 import OrderTable from './OrderTable/OrderTable';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { SearchQueryType } from '../../model/product';
 import { useDispatch, useSelector } from 'react-redux';
 import { orderActions } from '../../redux/actions/orderAction';
@@ -10,6 +10,7 @@ import { RootState } from '../../redux/store';
 
 function AdminOrderPage() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [query, setQuery] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState<SearchQueryType>({
     page: query.get('page') || '1',
@@ -28,8 +29,17 @@ function AdminOrderPage() {
   ];
 
   useEffect(() => {
-    dispatch(orderActions.getOrderList());
-  }, []);
+    dispatch(orderActions.getOrderList({ ...searchQuery }));
+  }, [query]);
+
+  useEffect(() => {
+    if (searchQuery.orderNum === '') {
+      delete searchQuery.orderNum;
+    }
+    const params = new URLSearchParams(searchQuery);
+    const query = params.toString();
+    navigate('?' + query);
+  }, [searchQuery]);
 
   return (
     <Container className='admin-product'>
