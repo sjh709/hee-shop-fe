@@ -37,7 +37,12 @@ function orderReducer(
     case types.CREATE_ORDER_SUCCESS:
       return { ...state, loading: false, orderNum: payload };
     case types.GET_ORDER_SUCCESS:
-      return { ...state, loading: false, orderList: payload };
+      return {
+        ...state,
+        loading: false,
+        orderList: payload.data,
+        totalPageNum: payload.totalPageNum,
+      };
     case types.GET_ORDER_LIST_SUCCESS:
       return {
         ...state,

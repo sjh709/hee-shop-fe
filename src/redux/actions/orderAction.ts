@@ -34,15 +34,17 @@ function createOrder(
   };
 }
 
-function getOrder(): any {
+function getOrder(query: { page: string }): any {
   return async (dispatch: Dispatch) => {
     try {
       dispatch({ type: types.GET_ORDER_REQUEST });
-      const response = await api.get('/order/me');
+      const response = await api.get('/order/me', {
+        params: { ...query },
+      });
       if (response.status !== 200) throw new Error(response.data.error);
       dispatch({
         type: types.GET_ORDER_SUCCESS,
-        payload: response.data.data,
+        payload: response.data,
       });
     } catch (e) {
       const err = e as ErrorType;
