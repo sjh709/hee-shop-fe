@@ -8,6 +8,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { orderActions } from '../../redux/actions/orderAction';
 import { RootState } from '../../redux/store';
 import Paginate from '../../components/Paginate/Paginate';
+import { GetOrderListType } from '../../model/order';
+import * as types from '../../constants/order.constants';
+import OrderDetailDialog from './OrderDetailDialog/OrderDetailDialog';
 
 function AdminOrderPage() {
   const dispatch = useDispatch();
@@ -20,6 +23,7 @@ function AdminOrderPage() {
   const { adminOrderList, totalPageNum } = useSelector(
     (state: RootState) => state.order
   );
+  const [open, setOpen] = useState<boolean>(false);
   const tableHeader = [
     { title: '#', num: 1 },
     { title: 'Order Num', num: 2 },
@@ -34,6 +38,14 @@ function AdminOrderPage() {
   const handlePageClick = ({ selected }: { selected: number }) => {
     setSearchQuery({ ...searchQuery, page: String(selected + 1) });
   };
+
+  const openEditForm = (order: GetOrderListType) => {
+    console.log('openEditForm', order);
+    setOpen(true);
+    dispatch({ type: types.SET_SELECTED_ORDER, payload: order });
+  };
+
+  const handleClose = () => setOpen(false);
 
   useEffect(() => {
     dispatch(orderActions.getOrderList({ ...searchQuery }));
@@ -57,8 +69,13 @@ function AdminOrderPage() {
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
         />
-        <OrderTable header={tableHeader} data={adminOrderList} />
+        <OrderTable
+          header={tableHeader}
+          data={adminOrderList}
+          openEditForm={openEditForm}
+        />
       </Container>
+      <OrderDetailDialog open={open} handleClose={handleClose} />
       <Paginate
         handlePageClick={handlePageClick}
         totalPageNum={totalPageNum}

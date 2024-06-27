@@ -8,9 +8,10 @@ import './OrderTable.style.css';
 interface OwnProps {
   header: OrderTableHeaderType[];
   data: GetOrderListType[];
+  openEditForm: (order: GetOrderListType) => void;
 }
 
-function OrderTable({ header, data }: OwnProps) {
+function OrderTable({ header, data, openEditForm }: OwnProps) {
   return (
     <Container className='mt-4 product-table order-table'>
       <Row className='header-row'>
@@ -22,7 +23,11 @@ function OrderTable({ header, data }: OwnProps) {
       </Row>
       {data.length > 0 ? (
         data.map((item, index) => (
-          <Row className='table-row' key={index}>
+          <Row
+            className='table-row admin-order-row'
+            key={index}
+            onClick={() => openEditForm(item)}
+          >
             <Col className='table-col' md={1}>
               {index}
             </Col>

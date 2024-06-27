@@ -13,6 +13,7 @@ interface StateType {
   orderList: GetOrderType[];
   adminOrderList: GetOrderListType[];
   totalPageNum: number;
+  selectedOrder: {};
 }
 
 const initialState = {
@@ -22,6 +23,7 @@ const initialState = {
   orderList: [],
   adminOrderList: [],
   totalPageNum: 1,
+  selectedOrder: {},
 };
 
 function orderReducer(
@@ -50,6 +52,8 @@ function orderReducer(
         adminOrderList: payload.data,
         totalPageNum: payload.totalPageNum,
       };
+    case types.SET_SELECTED_ORDER:
+      return { ...state, selectedOrder: payload };
     case types.CREATE_ORDER_FAIL:
     case types.GET_ORDER_FAIL:
     case types.GET_ORDER_LIST_FAIL:
