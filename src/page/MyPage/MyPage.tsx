@@ -8,6 +8,7 @@ import { RootState } from '../../redux/store';
 import Paginate from '../../components/Paginate/Paginate';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { SearchQueryType } from '../../model/product';
+import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 
 function MyPage() {
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ function MyPage() {
   const [searchQuery, setSearchQuery] = useState<SearchQueryType>({
     page: query.get('page') || '1',
   });
-  const { orderList, totalPageNum } = useSelector(
+  const { orderList, totalPageNum, loading } = useSelector(
     (state: RootState) => state.order
   );
 
@@ -33,6 +34,10 @@ function MyPage() {
     const query = params.toString();
     navigate('?' + query);
   }, [searchQuery]);
+
+  if (loading) {
+    return <LoadingSpinner />;
+  }
 
   if (orderList?.length === 0) {
     return (
