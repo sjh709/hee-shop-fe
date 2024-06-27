@@ -21,14 +21,14 @@ function AdminOrderPage() {
     (state: RootState) => state.order
   );
   const tableHeader = [
-    '#',
-    'Order Num',
-    'Order Date',
-    'User',
-    'Order Item',
-    'Address',
-    'Total Price',
-    'Status',
+    { title: '#', num: 1 },
+    { title: 'Order Num', num: 2 },
+    { title: 'Order Date', num: 1 },
+    { title: 'User', num: 2 },
+    { title: 'Order Item', num: 2 },
+    { title: 'Address', num: 2 },
+    { title: 'Total Price', num: 1 },
+    { title: 'Status', num: 1 },
   ];
 
   const handlePageClick = ({ selected }: { selected: number }) => {

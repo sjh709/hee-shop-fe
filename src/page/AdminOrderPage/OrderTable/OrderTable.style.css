@@ -1,3 +1,9 @@
 .order-table {
   font-size: 0.9rem;
 }
+
+.text-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
