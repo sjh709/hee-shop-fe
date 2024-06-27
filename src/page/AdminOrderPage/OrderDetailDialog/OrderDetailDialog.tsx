@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './OrderDetailDialog.style.css';
 import { Modal, Table, Form, Button } from 'react-bootstrap';
 import { ORDER_STATUS } from '../../../constants/order.constants';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../redux/store';
 import { currencyFormat } from '../../../utils/number';
+import { orderActions } from '../../../redux/actions/orderAction';
 
 interface OwnProps {
   open: boolean;
@@ -12,12 +13,31 @@ interface OwnProps {
 }
 
 function OrderDetailDialog({ open, handleClose }: OwnProps) {
-  const { selectedOrder } = useSelector((state: RootState) => state.order);
+  const selectedOrder = useSelector(
+    (state: RootState) => state.order.selectedOrder
+  );
+  const [orderStatus, setOrderStatus] = useState<string>('');
+  const dispatch = useDispatch();
 
   const submitStatus = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log('submitStatus');
+    if (selectedOrder !== null) {
+      dispatch(orderActions.updateOrder(selectedOrder?._id, orderStatus));
+    }
+    handleClose();
   };
+
+  const handleStatusChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setOrderStatus(event.target.value);
+  };
+
+  useEffect(() => {
+    if (open) {
+      if (selectedOrder !== null) {
+        setOrderStatus(selectedOrder?.status);
+      }
+    }
+  }, [open]);
 
   return (
     <Modal size='lg' show={open} onHide={handleClose}>
@@ -83,7 +103,11 @@ function OrderDetailDialog({ open, handleClose }: OwnProps) {
         <Modal.Body>
           <Form.Group controlId='status'>
             <Form.Label>Status</Form.Label>
-            <Form.Select>
+            <Form.Select
+              value={orderStatus}
+              onChange={handleStatusChange}
+              required
+            >
               {ORDER_STATUS.map((item, idx) => (
                 <option key={idx} value={item.toLowerCase()}>
                   {item}

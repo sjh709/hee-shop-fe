@@ -74,8 +74,28 @@ function getOrderList(query: { page: string; orderNum?: string }): any {
   };
 }
 
+function updateOrder(id: string, status: string | undefined): any {
+  return async (dispatch: Dispatch) => {
+    try {
+      dispatch({ type: types.UPDATE_ORDER_REQUEST });
+      const response = await api.put(`/order/${id}`, { status });
+      if (response.status !== 200) throw new Error(response.data.error);
+      dispatch({ type: types.UPDATE_ORDER_SUCCESS, payload: response.data });
+      dispatch(
+        commonUIActions.showToastMessage('주문 내역 수정 완료', 'success')
+      );
+      dispatch(getOrderList({ page: '1', orderNum: '' }));
+    } catch (e) {
+      const err = e as ErrorType;
+      dispatch({ type: types.UPDATE_ORDER_FAIL, payload: err.error });
+      dispatch(commonUIActions.showToastMessage(err.error, 'error'));
+    }
+  };
+}
+
 export const orderActions = {
   createOrder,
   getOrder,
   getOrderList,
+  updateOrder,
 };
