@@ -1,0 +1,7 @@
+.order-detail-row {
+  margin-bottom: 1rem;
+}
+
+.table-border-bottom {
+  border-bottom: 2px solid var(--color-black);
+}

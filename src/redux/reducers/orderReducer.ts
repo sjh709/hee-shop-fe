@@ -13,7 +13,7 @@ interface StateType {
   orderList: GetOrderType[];
   adminOrderList: GetOrderListType[];
   totalPageNum: number;
-  selectedOrder: {};
+  selectedOrder: GetOrderListType | null;
 }
 
 const initialState = {
@@ -23,7 +23,7 @@ const initialState = {
   orderList: [],
   adminOrderList: [],
   totalPageNum: 1,
-  selectedOrder: {},
+  selectedOrder: null,
 };
 
 function orderReducer(
