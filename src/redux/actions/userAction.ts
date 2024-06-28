@@ -81,9 +81,25 @@ function logout(): any {
   };
 }
 
+function loginWithGoogle(token: string): any {
+  return async (dispatch: Dispatch) => {
+    try {
+      dispatch({ type: types.GOOGLE_LOGIN_REQUEST });
+      const response = await api.post('/auth/google', { token });
+      if (response.status !== 200) throw new Error(response.data.error);
+      dispatch({ type: types.GOOGLE_LOGIN_SUCCESS, payload: response.data });
+    } catch (e) {
+      const err = e as ErrorType;
+      dispatch({ type: types.GOOGLE_LOGIN_FAIL, payload: err.error });
+      dispatch(commonUIActions.showToastMessage(err.error, 'error'));
+    }
+  };
+}
+
 export const userActions = {
   registerUser,
   loginWithEmail,
   loginWithToken,
   logout,
+  loginWithGoogle,
 };

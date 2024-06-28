@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../../redux/actions/userAction';
 import { RootState } from '../../redux/store';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
+import { CredentialResponse, GoogleLogin } from '@react-oauth/google';
 
 function LoginPage() {
   const [email, setEmail] = useState<string>('');
@@ -19,6 +20,10 @@ function LoginPage() {
   const loginWithEmail = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     dispatch(userActions.loginWithEmail({ email, password }));
+  };
+
+  const handleGoogleLogin = async (googleData: CredentialResponse) => {
+    dispatch(userActions.loginWithGoogle(googleData.credential || ''));
   };
 
   useEffect(() => {
@@ -63,6 +68,18 @@ function LoginPage() {
             <Link to='/register' className='register-link'>
               회원가입 하기
             </Link>
+          </div>
+        </div>
+
+        <div className='social-login'>
+          <p>- 외부 계정으로 로그인하기 -</p>
+          <div className='google-login'>
+            <GoogleLogin
+              onSuccess={handleGoogleLogin}
+              onError={() => {
+                console.log('Login Failed');
+              }}
+            />
           </div>
         </div>
       </Form>
