@@ -105,8 +105,3 @@ export type GetOrderListType = {
   };
   _id: string;
 };
-
-export type OrderTableHeaderType = {
-  title: string;
-  num: number;
-};

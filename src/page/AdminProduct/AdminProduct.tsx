@@ -69,7 +69,7 @@ function AdminProduct() {
   }, [searchQuery]);
 
   return (
-    <>
+    <div>
       <Container className='admin-product'>
         <SearchBox
           placeholder='제품 이름으로 검색'
@@ -97,7 +97,7 @@ function AdminProduct() {
         totalPageNum={totalPageNum}
         searchQuery={searchQuery}
       />
-    </>
+    </div>
   );
 }
 

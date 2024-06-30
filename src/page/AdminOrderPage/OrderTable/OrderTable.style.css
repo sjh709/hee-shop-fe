@@ -1,7 +1,3 @@
-.order-table {
-  font-size: 0.9rem;
-}
-
 .text-ellipsis {
   white-space: nowrap;
   overflow: hidden;
@@ -10,4 +6,8 @@
 
 .admin-order-row {
   cursor: pointer;
+}
+
+.table {
+  table-layout: fixed;
 }

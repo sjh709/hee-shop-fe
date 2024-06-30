@@ -16,6 +16,17 @@
   font-family: 'Montserrat', sans-serif;
 }
 
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body > div {
+  height: 100%;
+}
+
 ul {
   list-style: none;
   margin: 0;
@@ -72,6 +83,10 @@ button {
   --bs-btn-active-border-color: var(--color-light-coral);
   --bs-btn-disabled-bg: var(--color-dark-coral);
   --bs-btn-disabled-border-color: var(--color-dark-coral);
+}
+
+.table > thead > tr > th {
+  --bs-table-accent-bg: var(--color-bg-coral);
 }
 
 /* react-credit-cards-2 */

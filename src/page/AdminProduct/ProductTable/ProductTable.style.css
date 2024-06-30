@@ -1,25 +1,12 @@
 .product-table {
-  border: 1px solid var(--color-black);
+  border: 1px solid var(--color-dark-gray);
 }
 
-.header-row {
-  background-color: var(--color-bg-coral);
-  border-bottom: 1px solid var(--color-dark-gray);
+.overflow-x {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.font-weight-500 {
   font-weight: 500;
-}
-
-.table-row:not(:last-child) {
-  border-bottom: 1px solid var(--color-dark-gray);
-}
-
-.table-row:hover {
-  background-color: var(--color-light-gray);
-}
-
-.table-col {
-  padding: 10px;
-}
-
-.table-col:not(:last-child) {
-  border-right: 1px solid var(--color-dark-gray);
 }

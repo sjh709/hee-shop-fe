@@ -1,66 +1,62 @@
 import React from 'react';
-import { Badge, Col, Container, Row } from 'react-bootstrap';
-import { GetOrderListType, OrderTableHeaderType } from '../../../model/order';
+import { Badge, Table } from 'react-bootstrap';
+import { GetOrderListType } from '../../../model/order';
 import { currencyFormat } from '../../../utils/number';
 import { badgeBg } from '../../../constants/order.constants';
 import './OrderTable.style.css';
 
 interface OwnProps {
-  header: OrderTableHeaderType[];
+  header: string[];
   data: GetOrderListType[];
   openEditForm: (order: GetOrderListType) => void;
 }
 
 function OrderTable({ header, data, openEditForm }: OwnProps) {
   return (
-    <Container className='mt-4 product-table order-table'>
-      <Row className='header-row'>
-        {header.map((item, index) => (
-          <Col key={index} className='table-col' md={item.num}>
-            {item.title}
-          </Col>
-        ))}
-      </Row>
-      {data.length > 0 ? (
-        data.map((item, index) => (
-          <Row
-            className='table-row admin-order-row'
-            key={index}
-            onClick={() => openEditForm(item)}
-          >
-            <Col className='table-col' md={1}>
-              {index}
-            </Col>
-            <Col className='table-col' md={2}>
-              {item.orderNum}
-            </Col>
-            <Col className='table-col' md={1}>
-              {item.createdAt.slice(0, 10)}
-            </Col>
-            <Col className='table-col text-ellipsis' md={2}>
-              {item.userId.email}
-            </Col>
-            <Col className='table-col text-ellipsis' md={2}>
-              {item.items[0].productId.name}
-              {item.items.length > 1 && ` 외 ${item.items.length - 1}개`}
-            </Col>
-            <Col className='table-col text-ellipsis' md={2}>
-              {item.shipTo.address1 + ' ' + item.shipTo.address2}
-            </Col>
-            <Col className='table-col' md={1}>
-              {currencyFormat(item.totalPrice)}
-            </Col>
-            <Col className='table-col' md={1}>
-              <Badge bg={badgeBg[item.status]}>{item.status}</Badge>
-            </Col>
-          </Row>
-        ))
-      ) : (
-        <Row>
-          <Col>상품이 없습니다.</Col>
-        </Row>
-      )}
-    </Container>
+    <div className='overflow-x height-100'>
+      <Table className='mt-4 product-table' bordered hover>
+        <thead>
+          <tr>
+            {header.map((title, index) => (
+              <th key={index} className='font-weight-500'>
+                {title}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {data.length > 0 ? (
+            data.map((item, index) => (
+              <tr
+                key={index}
+                className='admin-order-row'
+                onClick={() => openEditForm(item)}
+              >
+                <td>{index}</td>
+                <td>{item.orderNum}</td>
+                <td>{item.createdAt.slice(0, 10)}</td>
+                <td className='text-ellipsis'>{item.userId.email}</td>
+                <td>
+                  {item.items[0].productId.name}
+                  {item.items.length > 1 && ` 외 ${item.items.length - 1}개`}
+                </td>
+                <td className='text-ellipsis'>
+                  {item.shipTo.address1 + ' ' + item.shipTo.address2}
+                </td>
+                <td>{currencyFormat(item.totalPrice)}</td>
+                <td>
+                  <Badge bg={badgeBg[item.status]}>{item.status}</Badge>
+                </td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td>상품이 없습니다.</td>
+            </tr>
+          )}
+        </tbody>
+      </Table>
+    </div>
   );
 }
 

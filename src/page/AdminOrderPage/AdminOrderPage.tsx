@@ -25,14 +25,14 @@ function AdminOrderPage() {
   );
   const [open, setOpen] = useState<boolean>(false);
   const tableHeader = [
-    { title: '#', num: 1 },
-    { title: 'Order Num', num: 2 },
-    { title: 'Order Date', num: 1 },
-    { title: 'User', num: 2 },
-    { title: 'Order Item', num: 2 },
-    { title: 'Address', num: 2 },
-    { title: 'Total Price', num: 1 },
-    { title: 'Status', num: 1 },
+    '#',
+    'Order Num',
+    'Order Date',
+    'User',
+    'Order Item',
+    'Address',
+    'Total Price',
+    'Status',
   ];
 
   const handlePageClick = ({ selected }: { selected: number }) => {
@@ -61,7 +61,7 @@ function AdminOrderPage() {
   }, [searchQuery]);
 
   return (
-    <>
+    <div>
       <Container className='admin-product'>
         <SearchBox
           placeholder='주문 번호로 검색'
@@ -81,7 +81,7 @@ function AdminOrderPage() {
         totalPageNum={totalPageNum}
         searchQuery={searchQuery}
       />
-    </>
+    </div>
   );
 }
 

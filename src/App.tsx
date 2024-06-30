@@ -7,7 +7,7 @@ import AppRouter from './routes/AppRouter';
 
 function App() {
   return (
-    <div>
+    <div style={{ height: '100%' }}>
       <AppLayout>
         <AppRouter />
       </AppLayout>
