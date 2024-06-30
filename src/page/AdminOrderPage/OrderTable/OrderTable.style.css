@@ -1,13 +1,3 @@
-.text-ellipsis {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
 .admin-order-row {
   cursor: pointer;
-}
-
-.table {
-  table-layout: fixed;
 }

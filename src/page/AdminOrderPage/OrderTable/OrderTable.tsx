@@ -13,7 +13,7 @@ interface OwnProps {
 
 function OrderTable({ header, data, openEditForm }: OwnProps) {
   return (
-    <div className='overflow-x height-100'>
+    <div className='overflow-x'>
       <Table className='mt-4 product-table' bordered hover>
         <thead>
           <tr>
@@ -35,14 +35,12 @@ function OrderTable({ header, data, openEditForm }: OwnProps) {
                 <td>{index}</td>
                 <td>{item.orderNum}</td>
                 <td>{item.createdAt.slice(0, 10)}</td>
-                <td className='text-ellipsis'>{item.userId.email}</td>
+                <td>{item.userId.email}</td>
                 <td>
                   {item.items[0].productId.name}
                   {item.items.length > 1 && ` 외 ${item.items.length - 1}개`}
                 </td>
-                <td className='text-ellipsis'>
-                  {item.shipTo.address1 + ' ' + item.shipTo.address2}
-                </td>
+                <td>{item.shipTo.address1 + ' ' + item.shipTo.address2}</td>
                 <td>{currencyFormat(item.totalPrice)}</td>
                 <td>
                   <Badge bg={badgeBg[item.status]}>{item.status}</Badge>

@@ -10,3 +10,9 @@
 .font-weight-500 {
   font-weight: 500;
 }
+
+.table {
+  /* width: auto;
+  table-layout: fixed;
+  white-space: nowrap; */
+}
