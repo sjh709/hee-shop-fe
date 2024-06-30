@@ -69,11 +69,11 @@ function OrderDetailDialog({ open, handleClose }: OwnProps) {
         </div>
       </Modal.Body>
       <Modal.Body>
-        <div>주문내역</div>
-        <div>
-          <Table>
+        <div className='mb-2'>주문내역</div>
+        <div className='overflow-x'>
+          <Table bordered>
             <thead>
-              <tr className='table-border-bottom'>
+              <tr className='table-border-bottom vertical-middle'>
                 <th>ID</th>
                 <th>Name</th>
                 <th>Unit Price</th>

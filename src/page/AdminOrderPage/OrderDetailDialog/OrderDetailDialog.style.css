@@ -5,3 +5,7 @@
 .table-border-bottom {
   border-bottom: 2px solid var(--color-black);
 }
+
+.vertical-middle {
+  vertical-align: middle;
+}

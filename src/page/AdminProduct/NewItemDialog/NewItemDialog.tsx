@@ -188,7 +188,7 @@ function NewItemDialog({ showDialog, setShowDialog, mode }: OwnProps) {
             <div className='mt-2'>
               {stock.map((item, index) => (
                 <Row key={index} className='mb-2'>
-                  <Col sm={4}>
+                  <Col sm={4} xs={4}>
                     <Form.Select
                       onChange={(event) =>
                         handleSizeChange(event.target.value, index)
@@ -211,7 +211,7 @@ function NewItemDialog({ showDialog, setShowDialog, mode }: OwnProps) {
                       ))}
                     </Form.Select>
                   </Col>
-                  <Col sm={6}>
+                  <Col sm={6} xs={6}>
                     <Form.Control
                       onChange={(event) =>
                         handleStockChange(event.target.value, index)
@@ -222,7 +222,7 @@ function NewItemDialog({ showDialog, setShowDialog, mode }: OwnProps) {
                       required
                     />
                   </Col>
-                  <Col sm={2}>
+                  <Col sm={2} xs={2}>
                     <Button
                       variant='danger'
                       size='sm'

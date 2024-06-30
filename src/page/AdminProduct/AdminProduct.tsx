@@ -70,7 +70,7 @@ function AdminProduct() {
 
   return (
     <div>
-      <Container className='admin-product'>
+      <Container className='admin-product' fluid='md'>
         <SearchBox
           placeholder='제품 이름으로 검색'
           field='name'
