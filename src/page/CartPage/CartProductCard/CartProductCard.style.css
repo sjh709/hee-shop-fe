@@ -9,6 +9,7 @@
   background-color: var(--color-white);
   border: 1px solid gray;
   padding: 2px 7px;
+  color: var(--color-black);
 }
 
 .qty-dropdown {
@@ -21,4 +22,15 @@
 
 .card-content {
   font-size: 0.9rem;
+}
+
+/* 모바일 */
+@media (max-width: 743px) {
+  .receipt-container {
+    margin-bottom: 3rem;
+  }
+
+  .display-flex {
+    margin-top: 10px;
+  }
 }

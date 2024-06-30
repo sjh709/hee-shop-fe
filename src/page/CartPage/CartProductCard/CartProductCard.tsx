@@ -26,10 +26,10 @@ function CartProductCard({ item }: OwnProps) {
   return (
     <div className='product-card-cart'>
       <Row>
-        <Col md={2}>
+        <Col md={2} sm={3} xs={12}>
           <img src={item.productId.image} width={112} />
         </Col>
-        <Col md={10}>
+        <Col md={10} sm={9} xs={12}>
           <div className='display-flex'>
             <h3>{item.productId.name}</h3>
             <button

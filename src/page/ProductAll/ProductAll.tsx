@@ -45,7 +45,7 @@ function ProductAll() {
       <Row>
         {productList.length > 0 ? (
           productList.map((item, index) => (
-            <Col md='3' key={index}>
+            <Col md={3} sm={12} key={index}>
               <ProductCard item={item} />
             </Col>
           ))

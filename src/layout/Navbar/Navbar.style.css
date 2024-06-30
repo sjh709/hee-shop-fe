@@ -71,6 +71,10 @@
   margin-top: 15px;
 }
 
+.side-menu-icon > button {
+  color: var(--color-black);
+}
+
 .side-menu-list > li {
   margin-bottom: 10px;
 }
@@ -296,5 +300,13 @@
   .nav-icon,
   .admin-link {
     display: none;
+  }
+
+  .side-menu-list {
+    margin-top: 7rem;
+  }
+
+  .side-icon-group {
+    margin-bottom: 2rem;
   }
 }
