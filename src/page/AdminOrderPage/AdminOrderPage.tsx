@@ -62,7 +62,7 @@ function AdminOrderPage() {
 
   return (
     <div>
-      <Container className='admin-product'>
+      <Container className='admin-product' fluid='md'>
         <SearchBox
           placeholder='주문 번호로 검색'
           field='orderNum'

@@ -14,7 +14,17 @@ interface OwnProps {
 function OrderTable({ header, data, openEditForm }: OwnProps) {
   return (
     <div className='overflow-x'>
-      <Table className='mt-4 product-table' bordered hover>
+      <Table className='mt-4 product-table table-ellipsis' bordered hover>
+        <colgroup>
+          <col width='5%' />
+          <col width='11%' />
+          <col width='14%' />
+          <col width='12%' />
+          <col width='20%' />
+          <col width='14%' />
+          <col width='12%' />
+          <col width='12%' />
+        </colgroup>
         <thead>
           <tr>
             {header.map((title, index) => (
@@ -33,14 +43,16 @@ function OrderTable({ header, data, openEditForm }: OwnProps) {
                 onClick={() => openEditForm(item)}
               >
                 <td>{index}</td>
-                <td>{item.orderNum}</td>
+                <td className='table-td-ellipsis'>{item.orderNum}</td>
                 <td>{item.createdAt.slice(0, 10)}</td>
-                <td>{item.userId.email}</td>
-                <td>
+                <td className='table-td-ellipsis'>{item.userId.email}</td>
+                <td className='table-td-ellipsis'>
                   {item.items[0].productId.name}
                   {item.items.length > 1 && ` 외 ${item.items.length - 1}개`}
                 </td>
-                <td>{item.shipTo.address1 + ' ' + item.shipTo.address2}</td>
+                <td className='table-td-ellipsis'>
+                  {item.shipTo.address1 + ' ' + item.shipTo.address2}
+                </td>
                 <td>{currencyFormat(item.totalPrice)}</td>
                 <td>
                   <Badge bg={badgeBg[item.status]}>{item.status}</Badge>
