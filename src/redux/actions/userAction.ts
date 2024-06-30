@@ -87,6 +87,7 @@ function loginWithGoogle(token: string): any {
       dispatch({ type: types.GOOGLE_LOGIN_REQUEST });
       const response = await api.post('/auth/google', { token });
       if (response.status !== 200) throw new Error(response.data.error);
+      sessionStorage.setItem('token', response.data.token);
       dispatch({ type: types.GOOGLE_LOGIN_SUCCESS, payload: response.data });
     } catch (e) {
       const err = e as ErrorType;
