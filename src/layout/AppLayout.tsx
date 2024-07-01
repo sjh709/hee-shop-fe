@@ -23,7 +23,7 @@ function AppLayout({ children }: OwnProps) {
   }, []);
 
   return (
-    <div style={{ height: '100%' }}>
+    <div>
       <ToastMessage />
       {location.pathname.includes('admin') ? (
         <Row className='sidebar-row'>
