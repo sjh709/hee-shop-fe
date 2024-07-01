@@ -34,6 +34,11 @@ function Navbar({ user }: { user: UserType | null }) {
     dispatch(userActions.logout());
   };
 
+  const handleSelectMenu = (url: string) => {
+    setSideOpen(false);
+    navigate(url);
+  };
+
   useEffect(() => {
     if (user) {
       dispatch(cartActions.getCartQty());
@@ -129,16 +134,20 @@ function Navbar({ user }: { user: UserType | null }) {
             {user ? (
               <button onClick={logout}>로그아웃</button>
             ) : (
-              <Link to='/login'>로그인</Link>
+              <button onClick={() => handleSelectMenu('/login')}>로그인</button>
             )}
           </div>
           <div className='side-menu-icon'>
             <FontAwesomeIcon icon={faBagShopping} />
-            <Link to='/cart'>쇼핑백({cartItemQty || 0})</Link>
+            <button onClick={() => handleSelectMenu('/cart')}>
+              쇼핑백({cartItemQty || 0})
+            </button>
           </div>
           <div className='side-menu-icon'>
             <FontAwesomeIcon icon={faBox} />
-            <Link to='/account/purchase'>내 주문</Link>
+            <button onClick={() => handleSelectMenu('/account/purchase')}>
+              내 주문
+            </button>
           </div>
         </div>
       </div>
