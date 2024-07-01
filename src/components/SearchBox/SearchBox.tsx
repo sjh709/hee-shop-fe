@@ -9,6 +9,7 @@ interface OwnProps {
   field: string;
   searchQuery: SearchQueryType;
   setSearchQuery: React.Dispatch<React.SetStateAction<SearchQueryType>>;
+  setSearchOpen?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function SearchBox({
@@ -16,6 +17,7 @@ function SearchBox({
   field,
   searchQuery,
   setSearchQuery,
+  setSearchOpen,
 }: OwnProps) {
   const [keyword, setKeyword] = useState<string>('');
 
@@ -30,6 +32,7 @@ function SearchBox({
         });
       }
       setKeyword('');
+      if (setSearchOpen) setSearchOpen(false);
     }
   };
 
