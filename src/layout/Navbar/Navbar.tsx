@@ -8,7 +8,12 @@ import {
   faXmark,
   faMagnifyingGlass,
 } from '@fortawesome/free-solid-svg-icons';
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import {
+  Link,
+  useLocation,
+  useNavigate,
+  useSearchParams,
+} from 'react-router-dom';
 import './Navbar.style.css';
 import { UserType } from '../../model/user';
 import { useDispatch, useSelector } from 'react-redux';
@@ -30,6 +35,7 @@ function Navbar({ user }: { user: UserType | null }) {
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const logout = () => {
     setSideOpen(false);
@@ -79,12 +85,14 @@ function Navbar({ user }: { user: UserType | null }) {
           )}
           <div className='nav-header'>
             <div className='mobile-icons'>
-              <div
-                className='search-menu'
-                onClick={() => setSearchOpen(!searchOpen)}
-              >
-                <FontAwesomeIcon icon={faMagnifyingGlass} />
-              </div>
+              {location.pathname === '/' && (
+                <div
+                  className='search-menu'
+                  onClick={() => setSearchOpen(!searchOpen)}
+                >
+                  <FontAwesomeIcon icon={faMagnifyingGlass} />
+                </div>
+              )}
               <div
                 className='burger-menu'
                 onClick={() => setSideOpen(!sideOpen)}
@@ -92,14 +100,16 @@ function Navbar({ user }: { user: UserType | null }) {
                 <FontAwesomeIcon icon={faBars} />
               </div>
             </div>
-            <div className='nav-search-box'>
-              <SearchBox
-                placeholder='검색어를 입력하세요'
-                field='name'
-                searchQuery={searchQuery}
-                setSearchQuery={setSearchQuery}
-              />
-            </div>
+            {location.pathname === '/' && (
+              <div className='nav-search-box'>
+                <SearchBox
+                  placeholder='검색어를 입력하세요'
+                  field='name'
+                  searchQuery={searchQuery}
+                  setSearchQuery={setSearchQuery}
+                />
+              </div>
+            )}
             <div className='nav-icon'>
               <FontAwesomeIcon icon={faUser} />
               {user ? (
