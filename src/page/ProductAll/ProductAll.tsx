@@ -7,6 +7,7 @@ import Paginate from '../../components/Paginate/Paginate';
 import { SearchQueryType } from '../../model/product';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { productActions } from '../../redux/actions/productAction';
+import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 
 function ProductAll() {
   const [query, setQuery] = useSearchParams();
@@ -14,7 +15,7 @@ function ProductAll() {
     page: '1',
     name: '',
   });
-  const { productList, totalPageNum } = useSelector(
+  const { productList, totalPageNum, loading } = useSelector(
     (state: RootState) => state.product
   );
   const dispatch = useDispatch();
@@ -39,6 +40,10 @@ function ProductAll() {
     const query = params.toString();
     navigate('?' + query);
   }, [searchQuery]);
+
+  if (loading) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <Container className='mt-5 mb-5'>

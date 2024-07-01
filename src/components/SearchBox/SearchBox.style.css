@@ -3,6 +3,8 @@
   padding: 5px;
   margin-top: 1rem;
   width: 90%;
+  display: flex;
+  align-items: center;
 }
 
 .search-box input {
@@ -12,6 +14,13 @@
 
 .search-icon {
   cursor: pointer;
+}
+
+/* 태블릿 */
+@media (min-width: 744px) and (max-width: 1023px) {
+  .search-box input {
+    width: 90%;
+  }
 }
 
 /* 모바일 */

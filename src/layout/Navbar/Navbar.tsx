@@ -116,7 +116,7 @@ function Navbar({ user }: { user: UserType | null }) {
         <div className='side-search-box'>
           <SearchBox
             placeholder='검색어를 입력하세요'
-            field='field'
+            field='name'
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
           />

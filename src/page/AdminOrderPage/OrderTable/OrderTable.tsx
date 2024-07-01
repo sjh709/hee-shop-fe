@@ -61,7 +61,9 @@ function OrderTable({ header, data, openEditForm }: OwnProps) {
             ))
           ) : (
             <tr>
-              <td>상품이 없습니다.</td>
+              <td colSpan={8} className='text-center'>
+                상품이 없습니다.
+              </td>
             </tr>
           )}
         </tbody>
