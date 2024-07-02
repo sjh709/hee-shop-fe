@@ -277,14 +277,14 @@
   }
 
   .side-menu-list {
-    margin-top: 5rem;
+    margin-top: 3rem;
     font-size: 1.6rem;
     margin-left: 2rem;
     font-weight: bold;
   }
 
   .side-menu-list > li {
-    margin-bottom: 10px;
+    margin-bottom: 8px;
   }
 
   .side-admin-page {

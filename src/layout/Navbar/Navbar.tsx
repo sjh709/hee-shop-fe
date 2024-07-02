@@ -58,6 +58,7 @@ function Navbar({ user }: { user: UserType | null }) {
   };
 
   const handleSelectCategory = (cate_no: string) => {
+    if (sideOpen) setSideOpen(false);
     setSearchQuery({ ...searchQuery, page: '1', name: '', cate_no });
   };
 
