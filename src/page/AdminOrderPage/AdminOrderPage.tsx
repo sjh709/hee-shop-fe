@@ -40,7 +40,6 @@ function AdminOrderPage() {
   };
 
   const openEditForm = (order: GetOrderListType) => {
-    console.log('openEditForm', order);
     setOpen(true);
     dispatch({ type: types.SET_SELECTED_ORDER, payload: order });
   };

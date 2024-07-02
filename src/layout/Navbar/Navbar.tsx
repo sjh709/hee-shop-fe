@@ -58,7 +58,7 @@ function Navbar({ user }: { user: UserType | null }) {
   };
 
   const handleSelectCategory = (cate_no: string) => {
-    setSearchQuery({ ...searchQuery, page: '1', cate_no });
+    setSearchQuery({ ...searchQuery, page: '1', name: '', cate_no });
   };
 
   useEffect(() => {
@@ -68,26 +68,21 @@ function Navbar({ user }: { user: UserType | null }) {
   }, [user]);
 
   useEffect(() => {
-    if (query.size === 0) {
-      dispatch(productActions.getProductList({ page: '1', pageSize: 4 }));
-    } else {
-      dispatch(productActions.getProductList({ ...searchQuery, pageSize: 4 }));
-    }
-  }, [query]);
-
-  useEffect(() => {
     if (searchQuery.name === '') {
       delete searchQuery.name;
     }
+    if (searchQuery.cate_no === '') {
+      delete searchQuery.cate_no;
+    }
     const params = new URLSearchParams(searchQuery);
     const query = params.toString();
-    navigate('?' + query);
+    navigate('/?' + query);
   }, [searchQuery]);
 
   return (
     <div>
       <div className='nav-bar'>
-        <Link to='/' className='nav-logo'>
+        <Link to='/?page=1' className='nav-logo'>
           H#
         </Link>
         <div className='nav-menu-area'>
