@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import './SearchBox.style.css';
 import { SearchQueryType } from '../../model/product';
+import { useLocation } from 'react-router-dom';
 
 interface OwnProps {
   placeholder: string;
@@ -20,16 +21,29 @@ function SearchBox({
   setSearchOpen,
 }: OwnProps) {
   const [keyword, setKeyword] = useState<string>('');
+  const location = useLocation();
 
   const onCheckEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter' && event.nativeEvent.isComposing === false) {
       const value = (event.target as HTMLInputElement).value;
       if (setSearchQuery !== undefined) {
-        setSearchQuery({
-          ...searchQuery,
-          page: '1',
-          [field]: value,
-        });
+        if (
+          location.pathname === '/cart' ||
+          location.pathname === '/account/purchase'
+        ) {
+          setSearchQuery({
+            ...searchQuery,
+            page: '1',
+            cate_no: '',
+            [field]: value,
+          });
+        } else {
+          setSearchQuery({
+            ...searchQuery,
+            page: '1',
+            [field]: value,
+          });
+        }
       }
       setKeyword('');
       if (setSearchOpen) setSearchOpen(false);

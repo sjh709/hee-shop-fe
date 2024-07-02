@@ -119,16 +119,14 @@ function Navbar({ user }: { user: UserType | null }) {
                 <FontAwesomeIcon icon={faBars} />
               </div>
             </div>
-            {location.pathname === '/' && (
-              <div className='nav-search-box'>
-                <SearchBox
-                  placeholder='검색어를 입력하세요'
-                  field='name'
-                  searchQuery={searchQuery}
-                  setSearchQuery={setSearchQuery}
-                />
-              </div>
-            )}
+            <div className='nav-search-box'>
+              <SearchBox
+                placeholder='검색어를 입력하세요'
+                field='name'
+                searchQuery={searchQuery}
+                setSearchQuery={setSearchQuery}
+              />
+            </div>
             <div className='nav-icon'>
               <FontAwesomeIcon icon={faUser} />
               {user ? (
