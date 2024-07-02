@@ -51,4 +51,5 @@ export type SearchQueryType = {
   page: string;
   name?: string;
   orderNum?: string;
+  cate_no?: string;
 };

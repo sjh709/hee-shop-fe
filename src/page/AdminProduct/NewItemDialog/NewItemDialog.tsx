@@ -273,8 +273,8 @@ function NewItemDialog({ showDialog, setShowDialog, mode }: OwnProps) {
                 required
               >
                 {CATEGORY.map((item, idx) => (
-                  <option key={idx} value={item.toLowerCase()}>
-                    {item}
+                  <option key={idx} value={item.cate_no}>
+                    {item.cate_nm}
                   </option>
                 ))}
               </Form.Control>

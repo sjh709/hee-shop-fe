@@ -22,9 +22,18 @@ import SearchBox from '../../components/SearchBox/SearchBox';
 import { SearchQueryType } from '../../model/product';
 import { RootState } from '../../redux/store';
 import { cartActions } from '../../redux/actions/cartAction';
+import { productActions } from '../../redux/actions/productAction';
 
 function Navbar({ user }: { user: UserType | null }) {
-  const menuList = ['Women', 'Men', 'Baby', 'Kids', 'Sport', 'Home'];
+  const menuList = [
+    { cate_no: '', cate_nm: '전체' },
+    { cate_no: '1', cate_nm: '아우터' },
+    { cate_no: '2', cate_nm: '상의' },
+    { cate_no: '3', cate_nm: '팬츠' },
+    { cate_no: '4', cate_nm: '스커트' },
+    { cate_no: '5', cate_nm: '원피스' },
+    { cate_no: '6', cate_nm: '패션잡화' },
+  ];
   const [sideOpen, setSideOpen] = useState<boolean>(false);
   const [searchOpen, setSearchOpen] = useState<boolean>(false);
   const [query, setQuery] = useSearchParams();
@@ -32,6 +41,7 @@ function Navbar({ user }: { user: UserType | null }) {
   const [searchQuery, setSearchQuery] = useState<SearchQueryType>({
     page: query.get('page') || '1',
     name: query.get('name') || '',
+    cate_no: query.get('cate_no') || '',
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -47,11 +57,19 @@ function Navbar({ user }: { user: UserType | null }) {
     navigate(url);
   };
 
+  const handleSelectCategory = (cate_no: string) => {
+    setSearchQuery({ ...searchQuery, page: '1', cate_no });
+  };
+
   useEffect(() => {
     if (user) {
       dispatch(cartActions.getCartQty());
     }
   }, [user]);
+
+  useEffect(() => {
+    dispatch(productActions.getProductList({ ...searchQuery, pageSize: 4 }));
+  }, [query]);
 
   useEffect(() => {
     if (searchQuery.name === '') {
@@ -72,7 +90,9 @@ function Navbar({ user }: { user: UserType | null }) {
           <ul className='nav-menu'>
             {menuList.map((menu, index) => (
               <li key={index} className='nav-menu-item'>
-                <a href='#'>{menu}</a>
+                <button onClick={() => handleSelectCategory(menu.cate_no)}>
+                  {menu.cate_nm}
+                </button>
               </li>
             ))}
           </ul>
@@ -141,7 +161,9 @@ function Navbar({ user }: { user: UserType | null }) {
           <ul className='side-menu-list'>
             {menuList.map((menu, index) => (
               <li key={index}>
-                <a href='#'>{menu}</a>
+                <button onClick={() => handleSelectCategory(menu.cate_no)}>
+                  {menu.cate_nm}
+                </button>
               </li>
             ))}
           </ul>

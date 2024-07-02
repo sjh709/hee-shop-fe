@@ -17,6 +17,7 @@ function createProduct({ formData }: CreateProductType): any {
       if (response.status !== 200) throw new Error(response.data.error);
       dispatch({ type: types.PRODUCT_CREATE_SUCCESS });
       dispatch(commonUIActions.showToastMessage('상품 생성 완료', 'success'));
+      dispatch(getProductList({ page: '1', name: '', pageSize: 3 }));
     } catch (e) {
       const err = e as ErrorType;
       dispatch({ type: types.PRODUCT_CREATE_FAIL, payload: err.error });
@@ -28,6 +29,7 @@ function createProduct({ formData }: CreateProductType): any {
 function getProductList(query: {
   page: string;
   name?: string;
+  cate_no?: string;
   pageSize: number;
 }): any {
   return async (dispatch: Dispatch) => {

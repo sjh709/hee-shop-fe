@@ -1,4 +1,11 @@
-export const CATEGORY = ['상의', '드레스', '셔츠 & 블라우스', '바지', '스커트'];
+export const CATEGORY = [
+  { cate_no: '1', cate_nm: '아우터' },
+  { cate_no: '2', cate_nm: '상의' },
+  { cate_no: '3', cate_nm: '팬츠' },
+  { cate_no: '4', cate_nm: '스커트' },
+  { cate_no: '5', cate_nm: '원피스' },
+  { cate_no: '6', cate_nm: '패션잡화' },
+];
 export const STATUS = ['active', 'disactive'];
 export const SIZE = ['XS', 'S', 'M', 'L', 'XL'];
 export const PRODUCT_CREATE_REQUEST = 'PRODUCT_CREATE_REQUEST';

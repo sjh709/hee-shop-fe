@@ -1,45 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import ProductCard from './ProductCard/ProductCard';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import Paginate from '../../components/Paginate/Paginate';
 import { SearchQueryType } from '../../model/product';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { productActions } from '../../redux/actions/productAction';
+import { useSearchParams } from 'react-router-dom';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 
 function ProductAll() {
   const [query, setQuery] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState<SearchQueryType>({
-    page: '1',
-    name: '',
+    page: query.get('page') || '1',
   });
   const { productList, totalPageNum, loading } = useSelector(
     (state: RootState) => state.product
   );
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const handlePageClick = ({ selected }: { selected: number }) => {
     setSearchQuery({ ...searchQuery, page: String(selected + 1) });
   };
-
-  useEffect(() => {
-    const page = query.get('page') || '1';
-    const name = query.get('name') || '';
-    setSearchQuery({ page, name });
-    dispatch(productActions.getProductList({ page, name, pageSize: 4 }));
-  }, [query]);
-
-  useEffect(() => {
-    if (searchQuery.name === '') {
-      delete searchQuery.name;
-    }
-    const params = new URLSearchParams(searchQuery);
-    const query = params.toString();
-    navigate('?' + query);
-  }, [searchQuery]);
 
   if (loading) {
     return <LoadingSpinner />;
