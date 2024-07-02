@@ -68,7 +68,11 @@ function Navbar({ user }: { user: UserType | null }) {
   }, [user]);
 
   useEffect(() => {
-    dispatch(productActions.getProductList({ ...searchQuery, pageSize: 4 }));
+    if (query.size === 0) {
+      dispatch(productActions.getProductList({ page: '1', pageSize: 4 }));
+    } else {
+      dispatch(productActions.getProductList({ ...searchQuery, pageSize: 4 }));
+    }
   }, [query]);
 
   useEffect(() => {
