@@ -45,7 +45,7 @@ PW:
 <br>
 
 | GitHub |
-| ------- |
+| :-------: |
 | [백엔드](https://github.com/sjh709/hee-shop-be)  |
 | [프론드엔드](https://github.com/sjh709/hee-shop-fe)  |
 
