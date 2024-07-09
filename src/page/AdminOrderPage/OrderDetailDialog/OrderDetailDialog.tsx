@@ -6,13 +6,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../redux/store';
 import { currencyFormat } from '../../../utils/number';
 import { orderActions } from '../../../redux/actions/orderAction';
+import { SearchQueryType } from '../../../model/product';
 
 interface OwnProps {
   open: boolean;
   handleClose: () => void;
+  searchQuery: SearchQueryType;
 }
 
-function OrderDetailDialog({ open, handleClose }: OwnProps) {
+function OrderDetailDialog({ open, handleClose, searchQuery }: OwnProps) {
   const selectedOrder = useSelector(
     (state: RootState) => state.order.selectedOrder
   );
@@ -22,7 +24,13 @@ function OrderDetailDialog({ open, handleClose }: OwnProps) {
   const submitStatus = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (selectedOrder !== null) {
-      dispatch(orderActions.updateOrder(selectedOrder?._id, orderStatus));
+      dispatch(
+        orderActions.updateOrder(
+          selectedOrder?._id,
+          orderStatus,
+          searchQuery.page
+        )
+      );
     }
     handleClose();
   };

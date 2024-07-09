@@ -74,7 +74,11 @@ function AdminOrderPage() {
           openEditForm={openEditForm}
         />
       </Container>
-      <OrderDetailDialog open={open} handleClose={handleClose} />
+      <OrderDetailDialog
+        open={open}
+        handleClose={handleClose}
+        searchQuery={searchQuery}
+      />
       <Paginate
         handlePageClick={handlePageClick}
         totalPageNum={totalPageNum}

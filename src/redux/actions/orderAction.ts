@@ -74,7 +74,11 @@ function getOrderList(query: { page: string; orderNum?: string }): any {
   };
 }
 
-function updateOrder(id: string, status: string | undefined): any {
+function updateOrder(
+  id: string,
+  status: string | undefined,
+  page: string
+): any {
   return async (dispatch: Dispatch) => {
     try {
       dispatch({ type: types.UPDATE_ORDER_REQUEST });
@@ -84,7 +88,7 @@ function updateOrder(id: string, status: string | undefined): any {
       dispatch(
         commonUIActions.showToastMessage('주문 내역 수정 완료', 'success')
       );
-      dispatch(getOrderList({ page: '1', orderNum: '' }));
+      dispatch(getOrderList({ page, orderNum: '' }));
     } catch (e) {
       const err = e as ErrorType;
       dispatch({ type: types.UPDATE_ORDER_FAIL, payload: err.error });

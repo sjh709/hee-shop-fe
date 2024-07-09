@@ -227,7 +227,7 @@ function NewItemDialog({
                       }
                       type='number'
                       placeholder='number of stock'
-                      value={item[1] ? item[1] : ''}
+                      value={item[1] ? item[1] : 0}
                       required
                     />
                   </Col>
