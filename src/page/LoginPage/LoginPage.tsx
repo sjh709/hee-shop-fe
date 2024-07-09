@@ -47,6 +47,7 @@ function LoginPage() {
             type='email'
             placeholder='이메일을 입력하세요'
             onChange={(event) => setEmail(event.target.value)}
+            required
           />
         </Form.Group>
 
@@ -56,6 +57,7 @@ function LoginPage() {
             type='password'
             placeholder='비밀번호를 입력하세요'
             onChange={(event) => setPassword(event.target.value)}
+            required
           />
         </Form.Group>
 

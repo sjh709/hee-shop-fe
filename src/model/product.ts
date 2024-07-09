@@ -19,6 +19,7 @@ export type StockType = {
 
 export type CreateProductType = {
   formData: ProductType;
+  page: string;
 };
 
 export type ProductListType = {

@@ -14,22 +14,22 @@ const api = axios.create({
 api.interceptors.request.use(
   (request) => {
     request.headers.Authorization = `Bearer ${sessionStorage.getItem('token')}`;
-    console.log('Starting Request', request);
+    // console.log('Starting Request', request);
     return request;
   },
   function (error) {
-    console.log('REQUEST ERROR', error);
+    // console.log('REQUEST ERROR', error);
   }
 );
 
 api.interceptors.response.use(
   (response) => {
-    console.log('Response:', response);
+    // console.log('Response:', response);
     return response;
   },
   function (error) {
     error = error.response.data;
-    console.log('RESPONSE ERROR', error);
+    // console.log('RESPONSE ERROR', error);
     // throw new Error(error.error);
     return Promise.reject(error);
   }

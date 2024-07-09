@@ -30,7 +30,7 @@ function userReducer(
     case types.GOOGLE_LOGIN_REQUEST:
       return { ...state, loading: true };
     case types.REGISTER_USER_SUCCESS:
-      return { ...state, loading: false };
+      return { ...state, loading: false, error: '' };
     case types.LOGIN_SUCCESS:
     case types.LOGIN_WITH_TOKEN_SUCCESS:
     case types.GOOGLE_LOGIN_SUCCESS:

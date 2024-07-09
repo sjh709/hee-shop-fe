@@ -9,7 +9,7 @@ interface ErrorType {
   error: string;
 }
 
-function createProduct({ formData }: CreateProductType): any {
+function createProduct({ formData, page }: CreateProductType): any {
   return async (dispatch: Dispatch) => {
     try {
       dispatch({ type: types.PRODUCT_CREATE_REQUEST });
@@ -17,7 +17,7 @@ function createProduct({ formData }: CreateProductType): any {
       if (response.status !== 200) throw new Error(response.data.error);
       dispatch({ type: types.PRODUCT_CREATE_SUCCESS });
       dispatch(commonUIActions.showToastMessage('상품 생성 완료', 'success'));
-      dispatch(getProductList({ page: '1', name: '', pageSize: 3 }));
+      dispatch(getProductList({ page, name: '', pageSize: 3 }));
     } catch (e) {
       const err = e as ErrorType;
       dispatch({ type: types.PRODUCT_CREATE_FAIL, payload: err.error });
@@ -50,7 +50,7 @@ function getProductList(query: {
   };
 }
 
-function editProduct(formData: EditProductType, id: string): any {
+function editProduct(formData: EditProductType, id: string, page: string): any {
   return async (dispatch: Dispatch) => {
     try {
       dispatch({ type: types.PRODUCT_EDIT_REQUEST });
@@ -61,7 +61,7 @@ function editProduct(formData: EditProductType, id: string): any {
         payload: response.data.data,
       });
       dispatch(commonUIActions.showToastMessage('상품 수정 완료', 'success'));
-      dispatch(getProductList({ page: '1', name: '', pageSize: 3 }));
+      dispatch(getProductList({ page, name: '', pageSize: 3 }));
     } catch (e) {
       const err = e as ErrorType;
       dispatch({ type: types.PRODUCT_EDIT_FAIL, payload: err.error });
@@ -69,7 +69,7 @@ function editProduct(formData: EditProductType, id: string): any {
   };
 }
 
-function deleteProduct(id: string): any {
+function deleteProduct(id: string, page: string): any {
   return async (dispatch: Dispatch) => {
     try {
       dispatch({ type: types.PRODUCT_DELETE_REQUEST });
@@ -77,7 +77,7 @@ function deleteProduct(id: string): any {
       if (response.status !== 200) throw new Error(response.data.error);
       dispatch({ type: types.PRODUCT_DELETE_SUCCESS });
       dispatch(commonUIActions.showToastMessage('상품 삭제 완료', 'success'));
-      dispatch(getProductList({ page: '1', pageSize: 3 }));
+      dispatch(getProductList({ page, pageSize: 3 }));
     } catch (e) {
       const err = e as ErrorType;
       dispatch({ type: types.PRODUCT_DELETE_FAIL, payload: err.error });

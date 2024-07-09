@@ -31,7 +31,7 @@ function ProductAll() {
     const name = query.get('name') || '';
     const cate_no = query.get('cate_no') || '';
     dispatch(
-      productActions.getProductList({ page, name, cate_no, pageSize: 1 })
+      productActions.getProductList({ page, name, cate_no, pageSize: 8 })
     );
     setSearchQuery({ ...searchQuery, page, name, cate_no });
   }, [query]);

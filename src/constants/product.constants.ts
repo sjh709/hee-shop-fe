@@ -7,7 +7,7 @@ export const CATEGORY = [
   { cate_no: '6', cate_nm: '패션잡화' },
 ];
 export const STATUS = ['active', 'disactive'];
-export const SIZE = ['XS', 'S', 'M', 'L', 'XL'];
+export const SIZE = ['XS', 'S', 'M', 'L', 'XL', 'FREE'];
 export const PRODUCT_CREATE_REQUEST = 'PRODUCT_CREATE_REQUEST';
 export const PRODUCT_CREATE_SUCCESS = 'PRODUCT_CREATE_SUCCESS';
 export const PRODUCT_CREATE_FAIL = 'PRODUCT_CREATE_FAIL';

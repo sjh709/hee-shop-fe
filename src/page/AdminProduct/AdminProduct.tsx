@@ -52,7 +52,7 @@ function AdminProduct() {
   };
 
   const deleteItem = (id: string) => {
-    dispatch(productActions.deleteProduct(id));
+    dispatch(productActions.deleteProduct(id, searchQuery.page));
   };
 
   useEffect(() => {
@@ -91,6 +91,7 @@ function AdminProduct() {
         showDialog={showDialog}
         setShowDialog={setShowDialog}
         mode={mode}
+        searchQuery={searchQuery}
       />
       <Paginate
         handlePageClick={handlePageClick}

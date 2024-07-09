@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Modal, Button, Form, Row, Col } from 'react-bootstrap';
-import { ProductType } from '../../../model/product';
+import { ProductType, SearchQueryType } from '../../../model/product';
 import { CATEGORY, STATUS, SIZE } from '../../../constants/product.constants';
 import CloudinaryUploadWidget from '../../../utils/CloudinaryUploadWidget';
 import './NewItemDialog.style.css';
@@ -15,6 +15,7 @@ interface OwnProps {
   showDialog: boolean;
   setShowDialog: React.Dispatch<React.SetStateAction<boolean>>;
   mode: string;
+  searchQuery: SearchQueryType;
 }
 
 const InitialFormData = {
@@ -28,7 +29,12 @@ const InitialFormData = {
   price: '0',
 };
 
-function NewItemDialog({ showDialog, setShowDialog, mode }: OwnProps) {
+function NewItemDialog({
+  showDialog,
+  setShowDialog,
+  mode,
+  searchQuery,
+}: OwnProps) {
   const handleClose = () => setShowDialog(false);
   const selectedProduct = useSelector(
     (state: RootState) => state.product.selectedProduct
@@ -90,6 +96,7 @@ function NewItemDialog({ showDialog, setShowDialog, mode }: OwnProps) {
   const handelSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (stock.length === 0) return setStockError(true);
+    else setStockError(false);
     const totalStock = stock.reduce((acc, cur) => {
       return { ...acc, [cur[0]]: parseInt(cur[1]) };
     }, {});
@@ -98,6 +105,7 @@ function NewItemDialog({ showDialog, setShowDialog, mode }: OwnProps) {
       dispatch(
         productActions.createProduct({
           formData: { ...formData, stock: totalStock },
+          page: searchQuery.page,
         })
       );
     } else {
@@ -105,7 +113,8 @@ function NewItemDialog({ showDialog, setShowDialog, mode }: OwnProps) {
         dispatch(
           productActions.editProduct(
             { ...formData, stock: totalStock },
-            selectedProduct._id
+            selectedProduct._id,
+            searchQuery.page
           )
         );
       }
