@@ -1,6 +1,6 @@
 # 👕 H#(에이치샵) | 쇼핑몰 사이트 (hee-shop)
 
-[이미지]()
+<img width="800" alt="H#_랜딩페이지" src="https://github.com/sjh709/hee-shop-fe/assets/42454759/dce8d474-3660-49cc-8bfa-d7ed051031fb">
 
 <br>
 
@@ -23,15 +23,17 @@
 <br>
 
 #### 📍 테스트 계정 - 관리자
+
 ```
-ID:
-PW: 
+ID: admin@gmail.com
+PW: ad12345
 ```
 
 #### 📍 테스트 계정 - 일반 유저
+
 ```
-ID:
-PW:
+ID: customer@gmail.com
+PW: cu12345
 ```
 
 <br>
@@ -44,10 +46,10 @@ PW:
 
 <br>
 
-| GitHub |
-| :-------: |
-| [백엔드](https://github.com/sjh709/hee-shop-be)  |
-| [프론드엔드](https://github.com/sjh709/hee-shop-fe)  |
+|                       GitHub                        |
+| :-------------------------------------------------: |
+|   [백엔드](https://github.com/sjh709/hee-shop-be)   |
+| [프론드엔드](https://github.com/sjh709/hee-shop-fe) |
 
 <br>
 
@@ -59,8 +61,8 @@ PW:
 
 ## 🗓️ 개발 기간
 
-- 24.06.03 ~ 24.07.00 (00일) 기능 구현 ✨
-- 24.07.00 ~ 리팩토링 진행 중 ♻️
+- 24.06.03 ~ 24.07.09 (37일) 기능 구현 ✨
+- 24.07.09 ~ 리팩토링 진행 중 ♻️
 
 <br>
 
@@ -68,13 +70,13 @@ PW:
 
 ### 🛠️ 기술 스택
 
-| 분야        | 기술                                                                                                                                                                |
-|-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 프론트엔드   | ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white) ![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black) ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=flat-square&logo=react-router&logoColor=white)  |
-| 백엔드        | ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black) ![Node.js](https://img.shields.io/badge/Node.js-5FA04E?style=flat-square&logo=node.js&logoColor=white)                                           |
-| DB       | ![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white) ![Mongoose](https://img.shields.io/badge/Mongoose-880000?style=flat-square&logo=mongoose&logoColor=white)                               |
-| 버전관리     | ![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white) ![Git](https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white)                                                                             |
-| 배포     | ![Netlify](https://img.shields.io/badge/Netlify-00C7B7?style=flat-square&logo=netlify&logoColor=white)                                                                              |
+| 분야       | 기술                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 프론트엔드 | ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black) ![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black) ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=flat-square&logo=react-router&logoColor=white) ![Redux Toolkit](https://img.shields.io/badge/Redux_Toolkit-764ABC?style=flat-square&logo=redux&logoColor=white) ![Redux Thunk](https://img.shields.io/badge/Redux_Thunk-764ABC?style=flat-square&logo=redux&logoColor=white) ![Axios](https://img.shields.io/badge/Axios-5A29E4?style=flat-square&logo=axios&logoColor=white) ![React Bootstrap](https://img.shields.io/badge/React_Bootstrap-41E0FD?style=flat-square&logo=reactbootstrap&logoColor=black) ![Font Awesome](https://img.shields.io/badge/Font_Awesome-538DD7?style=flat-square&logo=fontawesome&logoColor=white) |
+| 백엔드     | ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black) ![Node.js](https://img.shields.io/badge/Node.js-5FA04E?style=flat-square&logo=node.js&logoColor=white) ![Express](https://img.shields.io/badge/Express-000000?style=flat-square&logo=express&logoColor=white) ![dotenv](https://img.shields.io/badge/dotenv-ECD53F?style=flat-square&logo=dotenv&logoColor=black) ![Nodemon](https://img.shields.io/badge/Nodemon-76D04B?style=flat-square&logo=nodemon&logoColor=white)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| DB         | ![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white) ![Mongoose](https://img.shields.io/badge/Mongoose-880000?style=flat-square&logo=mongoose&logoColor=white)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| 버전관리   | ![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white) ![Git](https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| 배포       | ![Netlify](https://img.shields.io/badge/Netlify-00C7B7?style=flat-square&logo=netlify&logoColor=white) ![CloudType](https://img.shields.io/badge/CloudType-000000?style=flat-square&logoColor=white)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 
 <br>
 
@@ -86,10 +88,8 @@ PW:
 
 ## 📂 프로젝트 구조
 
-
 <br>
 
 ## 📌 페이지별 기능
-
 
 <br>
