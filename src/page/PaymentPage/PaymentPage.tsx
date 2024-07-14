@@ -167,7 +167,7 @@ function PaymentPage() {
             </Form>
           </div>
         </Col>
-        <Col md={5}>
+        <Col md={5} className='mb-5'>
           <OrderReceipt cartList={cartList} totalPrice={totalPrice} />
         </Col>
       </Row>

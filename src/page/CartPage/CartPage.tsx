@@ -24,8 +24,8 @@ function CartPage() {
 
   return (
     <Container>
-      <Row>
-        <Col md={7}>
+      <Row className='mb-5'>
+        <Col xl={7}>
           {cartList.length > 0 ? (
             cartList.map((item) => (
               <CartProductCard item={item} key={item._id} />
@@ -37,7 +37,7 @@ function CartPage() {
             </div>
           )}
         </Col>
-        <Col md={5}>
+        <Col xl={5}>
           <OrderReceipt cartList={cartList} totalPrice={totalPrice} />
         </Col>
       </Row>

@@ -15,7 +15,7 @@ function PaymentForm({
 }: OwnProps) {
   return (
     <Row className='display-flex'>
-      <Col md={6}>
+      <Col xl={6} className='mb-3'>
         <Cards
           number={cardValue.number}
           expiry={cardValue.expiry}
@@ -24,7 +24,7 @@ function PaymentForm({
           focused={cardValue.focus}
         />
       </Col>
-      <Col md={6}>
+      <Col xl={6}>
         <div>
           <Form.Control
             type='tel'
